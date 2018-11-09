@@ -25,6 +25,15 @@ showMap <- function(){
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "https://unpkg.com/leaflet@1.3.4/dist/leaflet.css", 
+              integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==",
+   crossorigin=""),
+   tags$script(src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js",
+               integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==",
+               crossorigin="")
+  ),
+  
 
   dashboardPage(
 
@@ -39,8 +48,11 @@ ui <- fluidPage(
     dashboardBody(
       tabItems(
         tabItem(tabName = "map",
-                  tags$style(type = "text/css", "#map {height: 910px !important;}"),
-                  showMap()
+                
+                  tags$div(id="mapid",
+                
+                  tags$style(type = "text/css", "#mapid {height: 910px !important;}"))
+                 # showMap()
               ),
         tabItem(tabName = "settings",
                 h2("Widgets tab content")
@@ -48,7 +60,11 @@ ui <- fluidPage(
       )
     )
 
-  )
+  ),
+  
+  
+  
+  tags$script(src="map.js")
 
 )
 
@@ -59,6 +75,7 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
+
   output$map <- renderLeaflet({
     leaflet() %>% addTiles() %>%  
       addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
@@ -72,6 +89,14 @@ server <- function(input, output) {
       addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
       setView( -0.80027778,51.118621111, 10.5)
   })
+  
+  
+  observe({
+    click<-input$map_marker_click
+    if(is.null(click))
+      return()
+    #add action on marker click
+    })
   
   
 
