@@ -10,43 +10,60 @@
 library(shinydashboard)
 library(shiny)
 library(leaflet)
-
-m <- leaflet()
-m <- addTiles(m)
-m <- addMarkers(m, lng=174.768, lat=-36.852, popup="The birthplace of R")
+library(png)
 
 
+dbHeader <- dashboardHeader()
+
+dbHeader$children[[2]]$children <-  tags$a(href='#',
+                                           tags$img(src='icon.png',height='60',width='200'))
 
 
-
+map <- function(){
+  leafletOutput("map")
+}
 # Define UI for application that draws a histogram
 ui <- fluidPage(
+
   
 
   dashboardPage(
 
-    dashboardHeader(
-      
-    ),
+    dbHeader,
     dashboardSidebar(
       
       sidebarMenu(
         menuItem("Map", tabName = "map", icon = icon("map")),
         menuItem("Settings", tabName = "settings", icon = icon("gear"))
       )
-      
     ),
     dashboardBody(
-      tags$style(type = "text/css", "#map {height: 910px !important;}"),
-      leafletOutput("map")
-  ))
+      tabItems(
+        tabItem(tabName = "map",
+                  tags$style(type = "text/css", "#map {height: 910px !important;}"),
+                  map()
+              ),
+        tabItem(tabName = "settings",
+                h2("Widgets tab content")
+        )
+      )
+    )
+
+  )
+
 )
+
+
+
+
+
 
 server <- function(input, output) {
   
   output$map <- renderLeaflet({
-    leaflet() %>% addTiles() %>% setView( -0.80027778,51.118621111, 10)
+    leaflet() %>% addTiles() %>% setView( -0.80027778,51.118621111, 10.5)
   })
+  
   
 
   
