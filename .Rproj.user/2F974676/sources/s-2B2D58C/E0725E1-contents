@@ -51,20 +51,21 @@ ui <- fluidPage(
                 
                   tags$div(id="mapid",
                 
-                  tags$style(type = "text/css", "#mapid {height: 910px !important;}"))
-                 # showMap()
+                  tags$style(type = "text/css", "#mapid {height: 910px !important;}")),
+                 # showMap(),
+                tags$script(src="map.js")
+                
               ),
         tabItem(tabName = "settings",
                 h2("Widgets tab content")
         )
       )
     )
-
-  ),
+  
+  )
   
   
   
-  tags$script(src="map.js")
 
 )
 
