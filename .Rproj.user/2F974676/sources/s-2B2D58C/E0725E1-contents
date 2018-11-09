@@ -18,14 +18,13 @@ dbHeader <- dashboardHeader()
 dbHeader$children[[2]]$children <-  tags$a(href='#',
                                            tags$img(src='icon.png',height='60',width='200'))
 
-
-map <- function(){
+showMap <- function(){
   leafletOutput("map")
 }
+
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
-
-  
 
   dashboardPage(
 
@@ -41,7 +40,7 @@ ui <- fluidPage(
       tabItems(
         tabItem(tabName = "map",
                   tags$style(type = "text/css", "#map {height: 910px !important;}"),
-                  map()
+                  showMap()
               ),
         tabItem(tabName = "settings",
                 h2("Widgets tab content")
@@ -61,7 +60,17 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   output$map <- renderLeaflet({
-    leaflet() %>% addTiles() %>% setView( -0.80027778,51.118621111, 10.5)
+    leaflet() %>% addTiles() %>%  
+      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
+      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
+      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
+      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
+      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
+      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
+      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
+      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
+      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
+      setView( -0.80027778,51.118621111, 10.5)
   })
   
   
