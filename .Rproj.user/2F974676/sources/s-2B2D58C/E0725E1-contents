@@ -54,6 +54,11 @@ ui <- fluidPage(
                 
                   tags$style(type = "text/css", "#mapid {height: 910px !important;}")),
                  # showMap()
+                tags$script(src="math.js"),
+                tags$script(src="data.js"),
+                
+                
+                tags$script(src="events.js"),
                 tags$script(src="map.js")
                 
               ),
