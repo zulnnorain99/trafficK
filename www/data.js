@@ -91,7 +91,8 @@ function Journey (headCode, date, origin, destination, station, movementCategory
   this.actualOut = actualOut;
   this.expectedIn = expectedIn;
   this.expectedOut = expectedOut;
-  this.delaySecs = delaySecs;
+
+  this.delaySecs = parseInt(delaySecs);
 }
 
 var allPoints = [];
@@ -127,15 +128,23 @@ var routes = [route1_points];
 function setDelays(){
   for(station in stations){
     var avg = calAvg(journeysByStation[station]);
-    stations[station][2] = avg <= 30? 0:(avg >= 45? 100: 50);
+    // console.log(avg);
+    stations[station][2] = (avg*100)/30;
+    console.log(avg);
+    console.log( (avg*100) / 30);
+
   }
 }
 function calAvg(journeys){
-  if(!journeys) return;
+  if(!journeys) return 13;
   sum = 0;
+  //  console.log(journeys);
+  for(var i =0; i< journeys.length; i++){
+    journey = journeys[i];
+  //  console.log(journey);
 
-  for(journey in journeys){
-    sum+= journey.delaySecs;
+    sum+= parseInt(journey.delaySecs);
   }
+  console.log("AVG IS ",sum,journey.delaySecs,journeys.length);
   return sum/journeys.length;
 }
