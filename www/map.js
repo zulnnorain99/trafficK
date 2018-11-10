@@ -65,9 +65,9 @@ visibleStations.push(lndn);
 
 //drawing objects
 
-for (var i = 0; i < routes.length; i++) {
+/*for (var i = 0; i < routes.length; i++) {
 //  drawRoute(routes[i]);
-}
+}*/
 
 
 for( var station in stations){
@@ -91,7 +91,7 @@ function drawStation(station) {
           opacity: 0.9
       });
 
-  a.bindTooltip(stations[i][1],tooltip);
+  a.bindTooltip(stations[station][1],tooltip);
   //a.bindPopup(stations[i][1]);  //adding popup with name
   a.addTo(map);
 
