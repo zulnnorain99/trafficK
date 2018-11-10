@@ -69,16 +69,16 @@ for (var i = 0; i < routes.length; i++) {
 //  drawRoute(routes[i]);
 }
 
-/*
-for( let i = 0; i<stations.length; ++i){
-                  drawStation(i);
-}*/
+
+for( var station in stations){
+                  drawStation(station);
+}
 
 
-function drawStation(i) {
-  var a = new L.circle(stations[i][0], {  //coordinates
-  color: `${hsl_col_perc(stations[i][2], green, red)}`, //congestion value
-  fillColor: `${hsl_col_perc(stations[i][2], green, red)}`,
+function drawStation(station) {
+  var a = new L.circle(stations[station][0], {  //coordinates
+  color: `${hsl_col_perc(stations[station][2], green, red)}`, //congestion value
+  fillColor: `${hsl_col_perc(stations[station][2], green, red)}`,
   fillOpacity: 0.8,
   radius: 500
   });

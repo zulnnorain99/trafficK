@@ -16,7 +16,6 @@ function getAvgCoord(routePoints) {
   for (var i = 0; i < routePoints.length; i++) {
     lat += routePoints[i].lat;
     lng += routePoints[i].lng;
-
   }
 
   lat /= routePoints.length;
