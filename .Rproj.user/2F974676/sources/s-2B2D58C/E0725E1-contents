@@ -11,6 +11,7 @@ library(shinydashboard)
 library(shiny)
 library(leaflet)
 library(png)
+library(shinyjs)
 
 
 dbHeader <- dashboardHeader()
@@ -52,7 +53,7 @@ ui <- fluidPage(
                   tags$div(id="mapid",
                 
                   tags$style(type = "text/css", "#mapid {height: 910px !important;}")),
-                 # showMap(),
+                 # showMap()
                 tags$script(src="map.js")
                 
               ),
@@ -62,9 +63,11 @@ ui <- fluidPage(
       )
     )
   
-  )
+  ), 
   
   
+  
+  tags$script(src="events.js")
   
 
 )
@@ -91,7 +94,7 @@ server <- function(input, output) {
       setView( -0.80027778,51.118621111, 10.5)
   })
   
-  
+
   observe({
     click<-input$map_marker_click
     if(is.null(click))
