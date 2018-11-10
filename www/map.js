@@ -13,7 +13,6 @@ const red = 0,
 var stationsNames = Object.keys(stations);
 
  var asd = [];
- console.log(journeysByStation["LONDON WATERLOO"])
 function getKeys(dict){
 var keys = [];
   for(key in dict){
@@ -21,11 +20,25 @@ var keys = [];
   }
   return keys;
 }
+
+function LoadFile() {
+  var oFrame = document.getElementById("frmFile");
+  var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+  while (strRawContents.indexOf("\r") >= 0)
+      strRawContents = strRawContents.replace("\r", "");
+  var arrLines = strRawContents.split("\n");
+  for (var i = 1; i < arrLines.length; i++) {
+      var curLine = arrLines[i];
+      parse(curLine);
+  }
+  setDelays();
   asd = getKeys(journeysByHeadCode);
-  asd.concat(getKeys(stations))
+  asd = asd.concat(getKeys(stations));
+  autocomplete(document.getElementById("myInput"), [asd]  );
   console.log(asd)
-  console.log(Object.keys(journeysByHeadCode));
-  autocomplete(document.getElementById("myInput"), asd  );
+
+}
+
 
 
 //initialisation.

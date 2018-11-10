@@ -130,22 +130,11 @@ function setDelays(){
   }
 }
 function calAvg(journeys){
+  if(!journeys) return;
   sum = 0;
+
   for(journey in journeys){
     sum+= journey.delaySecs;
   }
-  return sum/journeys.size();
-}
-
-function LoadFile() {
-  var oFrame = document.getElementById("frmFile");
-  var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
-  while (strRawContents.indexOf("\r") >= 0)
-      strRawContents = strRawContents.replace("\r", "");
-  var arrLines = strRawContents.split("\n");
-  for (var i = 1; i < arrLines.length; i++) {
-      var curLine = arrLines[i];
-      parse(curLine);
-  }
-  setDelays();
+  return sum/journeys.length;
 }
