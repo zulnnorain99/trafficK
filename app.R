@@ -28,7 +28,7 @@ showMap <- function(){
 ui <- fluidPage(
   tags$script(src="math.js"),
   tags$script(src="data.js"),
-  tags$script(src="searchbar.js"),
+  #tags$script(src="searchbar.js"),
   
 
     
