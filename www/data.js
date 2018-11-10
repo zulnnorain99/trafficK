@@ -126,7 +126,8 @@ var routes = [route1_points];
 
 function setDelays(){
   for(station in stations){
-    stations[station][2] = calAvg(journeysByStation[station]);
+    var avg = calAvg(journeysByStation[station]);
+    stations[station][2] = avg <= 30? 0:(avg >= 45? 100: 50);
   }
 }
 function calAvg(journeys){
