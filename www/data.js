@@ -6,8 +6,6 @@ var clapham_junction_main_coord = new L.LatLng(51.4636882,  -0.1712424);
 var vauxhall_main_coord = new L.LatLng(51.486183, -0.122860);
 var wimbledon_coord = new L.LatLng(51.4214158, -0.2075719);
 var surbition_coord = new L.LatLng(51.3947441, -0.3063072);
-var richmond_coord= new L.LatLng(51.4632698, -0.3038939); n
-var raynes_park_coord = new L.LatLng(51.4088525, -0.2323602); n
 
 var liphook_coord = new L.LatLng(51.071556, -0.800071);
 var walton_on_thames_coord = new L.LatLng(51.372999, -0.414313);
@@ -31,7 +29,9 @@ var milford_coord = new L.LatLng(51.163398, -0.636978);
 var portsmouth_harbour_coord = new L.LatLng(50.797297, -1.107672);
 var witley_coord = new L.LatLng(51.133115, -0.645791);
 var esher_coord = new L.LatLng(51.379908, -0.352740);
-
+var liss_coord = new L.LatLng(51.043656, -0.892767);
+var weybridge_coord = new L.LatLng(51.361804, -0.457853);
+var farncombe_coord = new L.LatLng(51.197198, -0.604523);
 
 
 
