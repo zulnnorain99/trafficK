@@ -2,18 +2,18 @@
     "collab_server" : "",
     "contents" : "",
     "created" : 1541790872264.000,
-    "dirty" : true,
+    "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
     "id" : "E0725E1",
-    "lastKnownWriteTime" : 1541861764,
-    "last_content_update" : 1541871241217,
+    "lastKnownWriteTime" : 1541873706,
+    "last_content_update" : 1541873706002,
     "path" : "C:/Users/Danilo/Desktop/traffiK/traffiK/app.R",
     "project_path" : "app.R",
     "properties" : {
-        "cursorPosition" : "61,0",
-        "scrollLine" : "39"
+        "cursorPosition" : "52,8",
+        "scrollLine" : "31"
     },
     "relative_order" : 1,
     "source_on_save" : false,

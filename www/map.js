@@ -8,6 +8,7 @@ const red = 0,
       pink = 300;
 
 
+  document.getElementById("search_bar_box").innerHTML = html;
 
 
 //initialisation

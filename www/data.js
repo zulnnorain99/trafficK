@@ -40,12 +40,10 @@ var farncombe_coord = new L.LatLng(51.197198, -0.604523);
  'WEST BYFLEET', 'MILFORD', 'CLAPHAM JUNCTION MAIN (9-11)', 'SURBITON', 'PORTSMOUTH HARBOUR', 'WITLEY', 'ESHER', 'LISS', 'WEYBRIDGE', 'FARNCOMBE'}
 
 var waterloo_london = [waterloo_london_coord, "Waterloo London", 100];
-var clapham_junction_london = [clapham_junction_london_coord, "Clapham Junction London",50];
-var vauxhall_london = [vauxhall_london_coord, "Vauxhall London",100];
+var clapham_junction_london = [clapham_junction_main_coord, "Clapham Junction London",50];
+var vauxhall_london = [vauxhall_main_coord, "Vauxhall London",100];
 var wimbledon = [wimbledon_coord, "Wimbledon",10];
 var surbition = [surbition_coord, "Surbition",79];
-var richmond = [richmond_coord, "Richmond",0];
-var raynes_park = [raynes_park_coord, "Raynes Park",35];
 var earlsfield = [earlsfield_coord, "Earlsfield",12];
 
 
@@ -53,8 +51,8 @@ var earlsfield = [earlsfield_coord, "Earlsfield",12];
 
 var stations = [waterloo_london, clapham_junction_london,
                 vauxhall_london, wimbledon,
-                surbition, richmond,
-                raynes_park, earlsfield];
+                surbition,
+                 earlsfield];
 
 var allPoints = [];
 for (var i = 0; i < stations.length; i++) {
@@ -62,7 +60,7 @@ for (var i = 0; i < stations.length; i++) {
 }
 
 //routes
-var route1_points = [waterloo_london_coord,vauxhall_london_coord, clapham_junction_london_coord,earlsfield_coord];
+var route1_points = [];
 
 
 var routes = [route1_points];
