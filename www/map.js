@@ -12,16 +12,25 @@ const red = 0,
 
 
 //initialisation
-var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+var mymap = L.map('mapid').setView([51.462252, -0.106578], 12);
 
 
 
 mymap.invalidateSize();
-L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-            maxZoom: 18
-         }).addTo(mymap);
-         mymap.attributionControl.setPrefix(''); // Don't show the 'Powered by Leaflet' text.
+var thunderforest_Transport = L.tileLayer('https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=c4fdde49b9a14b189c0fc231906018e5', {
+	attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+	apikey: 'c4fdde49b9a14b189c0fc231906018e5',
+	maxZoom: 22
+});
+
+//mymap.setStyle({ zoomControl:false });
+
+thunderforest_Transport.addTo(mymap);
+
+
+
+
+mymap.attributionControl.setPrefix(''); // Don't show the 'Powered by Leaflet' text.
 
  mymap.on('click', onMapClick);
 
@@ -30,11 +39,11 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var waterloo_london_coord = new L.LatLng(51.5031653, -0.1144938);
 var clapham_junction_london_coord = new L.LatLng(51.4636882,  -0.1712424);
-var vauxhall_london_coord = new L.LatLng(51.4860794,0.1249695);
-var wimbledon_coord = new L.LatLng(51.4350182, -0.2154541);
+var vauxhall_london_coord = new L.LatLng(51.486183, -0.122860);
+var wimbledon_coord = new L.LatLng(51.4214158, -0.2075719);
 var surbition_coord = new L.LatLng(51.3947441, -0.3063072);
 var richmond_coord= new L.LatLng(51.4632698, -0.3038939);
-var raynes_park_coord = new L.LatLng(51.4031940, -0.2427977);
+var raynes_park_coord = new L.LatLng(51.4088525, -0.2323602);
 var earlsfield_coord = new L.LatLng(51.442112, -0.1897404);
 
 
@@ -62,7 +71,7 @@ for( let i = 0; i<stations.length; ++i){
 var a = new L.circle(stations[i][0], {  //coordinates
 color: `${hsl_col_perc(stations[i][2], green, red)}`, //congestion value
 fillColor: `${hsl_col_perc(stations[i][2], green, red)}`,
-fillOpacity: 0.5,
+fillOpacity: 0.1,
 radius: 500
 });
 
@@ -79,7 +88,6 @@ a.bindTooltip(stations[i][1],tooltip);
 a.addTo(mymap)
 
 a.on('click', onClickCircles);
-
 a.on('mouseover', highlightFeature);
 a.on('mouseout', resetHighlight);
 
@@ -91,7 +99,6 @@ function highlightFeature(e) {
         weight: 5,
         color: '#ddd',
         dashArray: '',
-        fillOpacity: 0.7
     });
 }
 
@@ -105,9 +112,12 @@ layer.setStyle({
 
 
 function onClickCircles(e) {
-  e.target.color = `${hsl_col_perc(0, green, red)}`;
-  console.log(e.target.color);
 
+
+    mymap.fitBounds(e.target.getBounds());
+    var circle = e.target;
+    circle.setStyle({  //coordinate
+    });
 }
 
 
