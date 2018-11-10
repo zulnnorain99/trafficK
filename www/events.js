@@ -34,14 +34,16 @@ function onClickCircles(e) {
 }
 
 function onClickLondon(e) {
+
   var circlebounds = e.target.getBounds();
     clearObjects(visibleStations);
     for( let i = 0; i<stations.length; ++i){
                       drawStation(i);
     }
+var latlng = getAvgCoord(allPoints);
 
 
-    map.setView([51.462252, -0.106578], 12);
+    map.setView(latlng, 12);
 
 
 }

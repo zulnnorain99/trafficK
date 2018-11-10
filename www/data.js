@@ -28,7 +28,10 @@ var stations = [waterloo_london, clapham_junction_london,
                 surbition, richmond,
                 raynes_park, earlsfield];
 
-
+var allPoints = [];
+for (var i = 0; i < stations.length; i++) {
+  allPoints.push(stations[i][0]);
+}
 
 //routes
 var route1_points = [waterloo_london_coord,vauxhall_london_coord, clapham_junction_london_coord,earlsfield_coord];
