@@ -11,7 +11,7 @@ const red = 0,
 
 
 //initialisation
-var map = L.map('mapid').setView([51.462252, -0.106578], 12);
+var map = L.map('mapid').setView([51.5074, -0.1278], 9);
 
 var visibleroutes = [];
 var visibleStations = [];
@@ -34,20 +34,51 @@ map.attributionControl.setPrefix(''); // Don't show the 'Powered by Leaflet' tex
 
 
 
+
+//drawing london big circle
+var lndn = new L.circle([51.5074, -0.1278], {  //coordinates
+color: `${hsl_col_perc(100, green, red)}`, //congestion value
+fillColor: `${hsl_col_perc(100, green, red)}`,
+fillOpacity: 0.8,
+radius: 10000
+});
+
+var tooltip = L.tooltip({
+        direction: 'center',
+        permanent: true,
+        interactive: true,
+        noWrap: true,
+        opacity: 0.9
+    });
+
+lndn.bindTooltip("London",tooltip);
+//lndn.bindPopup(stations[i][1]);  //adding popup with name
+lndn.addTo(map);
+
+lndn.on('click', onClickLondon);
+lndn.on('mouseover', highlightFeature);
+lndn.on('mouseout', resetHighlight);
+
+visibleStations.push(lndn);
+
+
 //drawing objects
+
 for (var i = 0; i < routes.length; i++) {
-  drawRoute(routes[i]);
+//  drawRoute(routes[i]);
 }
+
+/*
 for( let i = 0; i<stations.length; ++i){
                   drawStation(i);
-}
+}*/
 
 
 function drawStation(i) {
   var a = new L.circle(stations[i][0], {  //coordinates
   color: `${hsl_col_perc(stations[i][2], green, red)}`, //congestion value
   fillColor: `${hsl_col_perc(stations[i][2], green, red)}`,
-  fillOpacity: 0.1,
+  fillOpacity: 0.8,
   radius: 500
   });
 
@@ -73,7 +104,7 @@ function drawStation(i) {
 //draw routes
 function drawRoute(points) {
   var route = new L.Polyline(points, {
-      color: 'black',
+      color: '#00a',
       weight: 10,
       opacity: 1,
       smoothFactor: 1
