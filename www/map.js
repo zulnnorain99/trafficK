@@ -87,26 +87,20 @@ a.on('mouseout', resetHighlight);
 
 function highlightFeature(e) {
     var layer = e.target;
-
     layer.setStyle({
         weight: 5,
-        color: '#fff',
+        color: '#ddd',
         dashArray: '',
         fillOpacity: 0.7
     });
 }
 
 function resetHighlight(e) {
-  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-    var layer = e.target;
+var layer = e.target;
+layer.setStyle({
+  color : layer.options.fillColor
+});
 
-    layer.setStyle({
-        weight: 5,
-        color: `${e.target.color}`,
-        dashArray: '',
-        fillOpacity: 0.7
-    });
-  }
 }
 
 
