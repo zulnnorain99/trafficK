@@ -9,17 +9,31 @@ const red = 0,
 
 
   document.getElementById("search_bar_box").innerHTML = html;
-  autocomplete(document.getElementById("myInput"), countries);
+
+var stationsNames = Object.keys(stations);
+
+ var asd = [];
+ console.log(journeysByStation["LONDON WATERLOO"])
+function getKeys(dict){
+var keys = [];
+  for(key in dict){
+    keys.push(key)
+  }
+  return keys;
+}
+  asd = getKeys(journeysByHeadCode);
+  asd.concat(getKeys(stations))
+  console.log(asd)
+  console.log(Object.keys(journeysByHeadCode));
+  autocomplete(document.getElementById("myInput"), asd  );
 
 
-
-//initialisation
+//initialisation.
 var map = L.map('mapid').setView([51.5074, -0.1278], 9);
 
 var visibleroutes = [];
 var visibleStations = [];
 var visibleCities = [];
-
 
 map.invalidateSize();
 var thunderforest_Transport = L.tileLayer('https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=c4fdde49b9a14b189c0fc231906018e5', {
@@ -28,16 +42,10 @@ var thunderforest_Transport = L.tileLayer('https://tile.thunderforest.com/transp
 	maxZoom: 22
 });
 
-//map.setStyle({ zoomControl:false });
 
+//map.setStyle({ zoomControl:false });
 thunderforest_Transport.addTo(map);
 map.attributionControl.setPrefix(''); // Don't show the 'Powered by Leaflet' text.
-
- //map.on('click', onMapClick);
-
-
-
-
 
 //drawing london big circle
 var lndn = new L.circle([51.5074, -0.1278], {  //coordinates

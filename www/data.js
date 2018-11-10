@@ -78,7 +78,21 @@ var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'FARNCOMBE':[farncombe_coord,"Farncombe",0]};
 
 
-
+var journeysByHeadCode = {};
+var journeysByStation = {};
+function Journey (headCode, date, origin, destination, station, movementCategory, actualIn, actualOut, expectedIn, expectedOut, delaySecs ){
+  this.headCode = headCode;
+  this.date = date;
+  this.origin = origin;
+  this.destination = destination;
+  this.station = station;
+  this.movementCategory = movementCategory;
+  this.actualIn = actualIn;
+  this.actualOut = actualOut;
+  this.expectedIn = expectedIn;
+  this.expectedOut = expectedOut;
+  this.delaySecs = delaySecs;
+}
 
 var allPoints = [];
 
@@ -86,8 +100,39 @@ for (var station in stations) {
   allPoints.push(stations[station][0]);
 }
 
+parse = function(line){
+  line = line.split(",");
+  journey = new Journey(line[0],line[2],line[4],line[5],line[6],line[7],line[8],line[9],line[10],line[11],line[16]);
+  if(journeysByStation[journey.station]){
+    journeysByStation[journey.station].push(journey);
+  }else{
+  journeysByStation[journey.station] = [journey]}
+
+  if(journeysByHeadCode[journey.headCode]){
+    journeysByHeadCode[journey.headCode].push(journey);
+  }else{
+    journeysByHeadCode[journey.headCode] = [journey];
+  }
+
+
+
+}
+
 //routes
 var route1_points = [];
 
 
 var routes = [route1_points];
+
+
+function LoadFile() {
+  var oFrame = document.getElementById("frmFile");
+  var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
+  while (strRawContents.indexOf("\r") >= 0)
+      strRawContents = strRawContents.replace("\r", "");
+  var arrLines = strRawContents.split("\n");
+  for (var i = 1; i < arrLines.length; i++) {
+      var curLine = arrLines[i];
+      parse(curLine);
+  }
+}
