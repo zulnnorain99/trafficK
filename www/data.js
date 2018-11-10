@@ -34,62 +34,48 @@ var farncombe_coord = new L.LatLng(51.197198, -0.604523);
 
 
 
-var stations = {'LIPHOOK':liphook_coord,
-                'WALTON ON THAMES':walton_on_thames_coord,
-                'ROWLANDS CASTLE':rowlands_castle_coord,
-                'PETERSFIELD':petersfield_coord,
-                'WIMBLEDON (WESSEX SIDE)':wimbledon_coord,
-                'EARLSFIELD':earlsfield_coord,
-                'HILSEA':hilsea_coord,
-                'GUILDFORD':guildford_coord,
-                'BEDHAMPTON':bedhampton_coord,
-                'WORPLESDON':worplesdon_coord,
-                'LONDON WATERLOO':waterloo_london_coord,
-                'WOKING':woking_coord,
-                'BYFLEET & NEW HAW':byfleet_and_new_haw_coord,
-                'PORTSMOUTH & SOUTHSEA':portsmouth_and_southsea_coord,
-                'HAVANT':havant_coord,
-                'GODALMING':godalming_coord,
-                'FRATTON':fratton_coord,
-                'VAUXHALL (MAIN)':vauxhall_main_coord,
-                'HERSHAM':hersham_coord,
-                'HASLEMERE':haslemere_coord,
-                'WEST BYFLEET':west_byfleet_coord,
-                'MILFORD':milford_coord,
-                'CLAPHAM JUNCTION MAIN (9-11)':clapham_junction_main_coord,
-                'SURBITON':surbition_coord,
-                'PORTSMOUTH HARBOUR':portsmouth_harbour_coord,
-                'WITLEY':witley_coord,
-                'ESHER':esher_coord,
-                'LISS':liss_coord,
-                'WEYBRIDGE':weybridge_coord,
-                'FARNCOMBE':farncombe_coord};
-
-
- var stations = {"Waterloo London":waterloo_london_coord,
-                 "Clapham Junction":clapham_junction_main_coord,
-                 "Vauxhall":vauxhall_main_coord,
-                 "Wimbledon":wimbledon_coord,
-                 "Surbition":surbition_coord,
-                 "LIPHOOK":liphook_coord,
-                 "WALTON ON THAMES":walton_on_thames_coord,
-                 ""}
+var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
+                'WALTON ON THAMES':[walton_on_thames_coord,"Walton on Thames",0],
+                'ROWLANDS CASTLE':[rowlands_castle_coord,"Rowland's Castle",0],
+                'PETERSFIELD':[petersfield_coord,"Petersfield",0],
+                'WIMBLEDON (WESSEX SIDE)':[wimbledon_coord,"Wimbledon",0],
+                'EARLSFIELD':[earlsfield_coord,"Earlsfield",0],
+                'HILSEA':[hilsea_coord,"Hilsea",0],
+                'GUILDFORD':[guildford_coord,"Guildford",0],
+                'BEDHAMPTON':[bedhampton_coord,"Bedhampton",0],
+                'WORPLESDON':[worplesdon_coord,"Worplesdon",0],
+                'LONDON WATERLOO':[waterloo_london_coord,"Waterloo",0],
+                'WOKING':[woking_coord,"Woking", 0],
+                'BYFLEET & NEW HAW':[byfleet_and_new_haw_coord,"Byfleet & New Haw",0],
+                'PORTSMOUTH & SOUTHSEA':[portsmouth_and_southsea_coord,"Portsmouth & Southsea",0],
+                'HAVANT':[havant_coord, "Havant", 0],
+                'GODALMING':[godalming_coord,"Godalming",0],
+                'FRATTON':[fratton_coord,"Fratton",0],
+                'VAUXHALL (MAIN)':[vauxhall_main_coord,"Vauxhall",0],
+                'HERSHAM':[hersham_coord,"Hersham",0],
+                'HASLEMERE':[haslemere_coord,"Haslemere",0],
+                'WEST BYFLEET':[west_byfleet_coord,"West Byfleet",0],
+                'MILFORD':[milford_coord,"Milford",0],
+                'CLAPHAM JUNCTION MAIN (9-11)':[clapham_junction_main_coord,"Clapham Junction",0],
+                'SURBITON':[surbition_coord,"Surbiton",0],
+                'PORTSMOUTH HARBOUR':[portsmouth_harbour_coord,"Portsmouth Harbour",0],
+                'WITLEY':[witley_coord,"Witley",0],
+                'ESHER':[esher_coord,"Esher",0],
+                'LISS':[liss_coord,"Liss",0],
+                'WEYBRIDGE':[weybridge_coord,"Weybrdge",0],
+                'FARNCOMBE':[farncombe_coord,"Farncombe",0]};
 
 
 
-
-var stations = [waterloo_london, clapham_junction_london,
-                vauxhall_london, wimbledon,
-                surbition, richmond,
-                raynes_park, earlsfield];
 
 var allPoints = [];
-for (var i = 0; i < stations.length; i++) {
-  allPoints.push(stations[i][0]);
+
+for (var station in stations) {
+  allPoints.push(stations[key][0]);
 }
 
 //routes
-var route1_points = [waterloo_london_coord,vauxhall_london_coord, clapham_junction_london_coord,earlsfield_coord];
+var route1_points = [];
 
 
 var routes = [route1_points];
