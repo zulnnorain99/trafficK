@@ -40,7 +40,7 @@ function onClickLondon(e) {
     for( let i = 0; i<stations.length; ++i){
                       drawStation(i);
     }
-var latlng = getAvgCoord(allPoints);
+var latlng = [51.5074, -0.1278];
 
 
     map.setView(latlng, 12);

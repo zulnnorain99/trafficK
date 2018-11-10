@@ -26,6 +26,10 @@ showMap <- function(){
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
+  
+  tags$script(src="searchbarhtml.js"),
+  
+  
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "https://unpkg.com/leaflet@1.3.4/dist/leaflet.css", 
               integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==",
@@ -42,8 +46,11 @@ ui <- fluidPage(
     dashboardSidebar(
       
       sidebarMenu(
-        menuItem("Map", tabName = "map", icon = icon("map")),
+        id="sidebarID",
+            box(id="search_bar_box",width=200, height = 60),
+              menuItem("Map", tabName = "map", icon = icon("map")),
         menuItem("Settings", tabName = "settings", icon = icon("gear"))
+        
       )
     ),
     dashboardBody(

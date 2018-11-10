@@ -34,6 +34,18 @@ var farncombe_coord = new L.LatLng(51.197198, -0.604523);
 
 
 
+
+{'LIPHOOK', 'WALTON ON THAMES', 'ROWLANDS CASTLE', 'PETERSFIELD', 'WIMBLEDON (WESSEX SIDE)', 'EARLSFIELD', 'HILSEA', 'GUILDFORD', 'BEDHAMPTON', 'WORPLESDON',
+ 'LONDON WATERLOO', 'WOKING', 'BYFLEET & NEW HAW', 'PORTSMOUTH & SOUTHSEA', 'HAVANT', 'GODALMING', 'FRATTON', 'VAUXHALL (MAIN)', 'HERSHAM', 'HASLEMERE',
+ 'WEST BYFLEET', 'MILFORD', 'CLAPHAM JUNCTION MAIN (9-11)', 'SURBITON', 'PORTSMOUTH HARBOUR', 'WITLEY', 'ESHER', 'LISS', 'WEYBRIDGE', 'FARNCOMBE'}
+
+var waterloo_london = [waterloo_london_coord, "Waterloo London", 100];
+var clapham_junction_london = [clapham_junction_main_coord, "Clapham Junction London",50];
+var vauxhall_london = [vauxhall_main_coord, "Vauxhall London",100];
+var wimbledon = [wimbledon_coord, "Wimbledon",10];
+var surbition = [surbition_coord, "Surbition",79];
+var earlsfield = [earlsfield_coord, "Earlsfield",12];
+
 var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'WALTON ON THAMES':[walton_on_thames_coord,"Walton on Thames",0],
                 'ROWLANDS CASTLE':[rowlands_castle_coord,"Rowland's Castle",0],
