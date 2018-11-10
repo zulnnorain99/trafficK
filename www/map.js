@@ -13,7 +13,6 @@ const red = 0,
 
 //initialisation
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-popup = new L.Popup();
 
 
 mymap.invalidateSize();
@@ -28,24 +27,26 @@ L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //markers
 
 
-var waterloo_london = new L.LatLng(51.5031653, -0.1144938);
-var clapham_junction_london = new L.LatLng(51.4636882,  -0.1712424);
-var vauxhall_london = new L.LatLng(51.4860794,0.1249695);
-var wimbledon = new L.LatLng(51.4350182, -0.2154541);
-var surbition = new L.LatLng(51.3947441, -0.3063072);
-var richmond= new L.LatLng(51.4632698, -0.3038939);
-var raynes_park = new L.LatLng(51.4031940, -0.2427977);
-var earlsfield = new L.LatLng(51.442112, -0.1897404);
+var waterloo_london_coord = new L.LatLng(51.5031653, -0.1144938);
+var clapham_junction_london_coord = new L.LatLng(51.4636882,  -0.1712424);
+var vauxhall_london_coord = new L.LatLng(51.4860794,0.1249695);
+var wimbledon_coord = new L.LatLng(51.4350182, -0.2154541);
+var surbition_coord = new L.LatLng(51.3947441, -0.3063072);
+var richmond_coord= new L.LatLng(51.4632698, -0.3038939);
+var raynes_park_coord = new L.LatLng(51.4031940, -0.2427977);
+var earlsfield_coord = new L.LatLng(51.442112, -0.1897404);
 
 
+var waterloo_london = [waterloo_london_coord, "Waterloo London", 100];
+var clapham_junction_london = [clapham_junction_london_coord, "Clapham Junction London",50];
+var vauxhall_london = [vauxhall_london_coord, "Vauxhall London",100];
+var wimbledon = [wimbledon_coord, "Wimbledon",10];
+var surbition = [surbition_coord, "Surbition",79];
+var richmond = [richmond_coord, "Richmond",0];
+var raynes_park = [raynes_park_coord, "Raynes Park",35];
+var earlsfield = [earlsfield_coord, "Earlsfield",12];
 
-var a_points = [waterloo_london, clapham_junction_london];
-var b_points = [clapham_junction_london, vauxhall_london];
-var c_points = [vauxhall_london, wimbledon];
-var d_points = [wimbledon, surbition];
-var e_points = [surbition, richmond];
-var f_points = [richmond, raynes_park];
-var g_points = [raynes_park, earlsfield];
+
 
 
 var stations = [waterloo_london, clapham_junction_london,
@@ -53,24 +54,19 @@ var stations = [waterloo_london, clapham_junction_london,
                 surbition, richmond,
                 raynes_park, earlsfield];
 
-var a_perc = 100;
-var b_perc = 100;
-var c_perc = 100;
-var d_perc = 100;
-var e_perc = 100;
-var f_perc = 100;
-var g_perc = 100;
 
 
 for( let i = 0; i<stations.length; ++i){
-var a = new L.circle(stations[i], {
-color: `${hsl_col_perc(a_perc, green, red)}`,
-fillColor: '#f03',
+var a = new L.circle(stations[i][0], {  //coordinates
+color: `${hsl_col_perc(stations[i][2], green, red)}`, //congestion value
+fillColor: `${hsl_col_perc(stations[i][2], green, red)}`,
 fillOpacity: 0.5,
 radius: 500
 });
 
-a.addTo(mymap);
+
+a.bindPopup(stations[i][1]);  //adding popup with name
+a.addTo(mymap)
 }
 
 
@@ -90,5 +86,5 @@ return 'hsl('+c+', 100%, 50%)';
 
 
 function onMapClick(e) {
-    mymap.setView([51, 0], 13);
+    //mymap.setView([51, 0], 13);
 }
