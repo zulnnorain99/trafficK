@@ -71,7 +71,7 @@ var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
 var allPoints = [];
 
 for (var station in stations) {
-  allPoints.push(stations[key][0]);
+  allPoints.push(stations[station][0]);
 }
 
 //routes
