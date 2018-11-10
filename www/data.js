@@ -124,6 +124,18 @@ var route1_points = [];
 
 var routes = [route1_points];
 
+function setDelays(){
+  for(station in stations){
+    stations[station][2] = calAvg(journeysByStation[station]);
+  }
+}
+function calAvg(journeys){
+  sum = 0;
+  for(journey in journeys){
+    sum+= journey.delaySecs;
+  }
+  return sum/journeys.size();
+}
 
 function LoadFile() {
   var oFrame = document.getElementById("frmFile");
@@ -135,4 +147,5 @@ function LoadFile() {
       var curLine = arrLines[i];
       parse(curLine);
   }
+  setDelays();
 }
