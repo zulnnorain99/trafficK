@@ -1,6 +1,8 @@
 //events
 
-function onMapClick(e) {}
+function onMapClick(e) {
+
+}
 
 
 function highlightFeature(e) {
@@ -29,4 +31,19 @@ function onClickCircles(e) {
     var circle = e.target;
     circle.setStyle({  //coordinate
     });
+}
+
+function onClickLondon(e) {
+
+  var circlebounds = e.target.getBounds();
+    clearObjects(visibleStations);
+    for( let i = 0; i<stations.length; ++i){
+                      drawStation(i);
+    }
+var latlng = getAvgCoord(allPoints);
+
+
+    map.setView(latlng, 12);
+
+
 }
