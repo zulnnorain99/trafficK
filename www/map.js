@@ -15,6 +15,7 @@ const red = 0,
 var mymap = L.map('mapid').setView([51.505, -0.09], 13);
 
 
+
 mymap.invalidateSize();
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
@@ -57,6 +58,7 @@ var stations = [waterloo_london, clapham_junction_london,
 
 
 for( let i = 0; i<stations.length; ++i){
+
 var a = new L.circle(stations[i][0], {  //coordinates
 color: `${hsl_col_perc(stations[i][2], green, red)}`, //congestion value
 fillColor: `${hsl_col_perc(stations[i][2], green, red)}`,
@@ -64,11 +66,55 @@ fillOpacity: 0.5,
 radius: 500
 });
 
+var tooltip = L.tooltip({
+        direction: 'center',
+        permanent: true,
+        interactive: true,
+        noWrap: true,
+        opacity: 0.9
+    });
 
-a.bindPopup(stations[i][1]);  //adding popup with name
+a.bindTooltip(stations[i][1],tooltip);
+//a.bindPopup(stations[i][1]);  //adding popup with name
 a.addTo(mymap)
+
+a.on('click', onClickCircles);
+
+a.on('mouseover', highlightFeature);
+a.on('mouseout', resetHighlight);
+
 }
 
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#fff',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+}
+
+function resetHighlight(e) {
+  if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: `${e.target.color}`,
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+  }
+}
+
+
+function onClickCircles(e) {
+  e.target.color = `${hsl_col_perc(0, green, red)}`;
+  console.log(e.target.color);
+
+}
 
 
 

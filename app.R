@@ -79,32 +79,6 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
-
-  output$map <- renderLeaflet({
-    leaflet() %>% addTiles() %>%  
-      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
-      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
-      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
-      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
-      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
-      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
-      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
-      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
-      addMarkers(lng= -0.80027778, lat=51.118621111, popup="Acton Main Line Station") %>%
-      setView( -0.80027778,51.118621111, 10.5)
-  })
-  
-
-  observe({
-    click<-input$map_marker_click
-    if(is.null(click))
-      return()
-    #add action on marker click
-    })
-  
-  
-
-  
 }
 
 shinyApp(ui, server)

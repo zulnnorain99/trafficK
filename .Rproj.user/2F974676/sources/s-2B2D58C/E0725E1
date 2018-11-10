@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3151145798",
+    "hash" : "0",
     "id" : "E0725E1",
-    "lastKnownWriteTime" : 1541844305,
-    "last_content_update" : 1541844305176,
+    "lastKnownWriteTime" : 1541846261,
+    "last_content_update" : 1541846261836,
     "path" : "C:/Users/Danilo/Desktop/traffiK/traffiK/app.R",
     "project_path" : "app.R",
     "properties" : {
-        "cursorPosition" : "66,2",
-        "scrollLine" : "41"
+        "cursorPosition" : "80,2",
+        "scrollLine" : "52"
     },
     "relative_order" : 1,
     "source_on_save" : false,
