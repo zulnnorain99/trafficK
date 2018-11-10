@@ -28,7 +28,7 @@ showMap <- function(){
 ui <- fluidPage(
   
   tags$script(src="searchbarhtml.js"),
-  
+  tags$script(src ="searchbar.js"),
   
   tags$head(
     tags$link(rel = "stylesheet", type = "text/css", href = "https://unpkg.com/leaflet@1.3.4/dist/leaflet.css", 
@@ -46,7 +46,7 @@ ui <- fluidPage(
     dashboardSidebar(
       
       sidebarMenu(
-        id="sidebarID",
+        id="sidebar",
             box(id="search_bar_box",width=200, height = 60),
               menuItem("Map", tabName = "map", icon = icon("map")),
         menuItem("Settings", tabName = "settings", icon = icon("gear"))

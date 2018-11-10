@@ -1,5 +1,7 @@
 //events
 
+var showingStations = false;
+
 function onMapClick(e) {
 
 }
@@ -23,9 +25,11 @@ layer.setStyle({
 }
 
 
+
+
 function onClickCircles(e) {
 
-    clearObjects(visibleroutes);
+    clearObjects(visibleroutes, e);
 
     map.fitBounds(e.target.getBounds());
     var circle = e.target;
@@ -33,16 +37,15 @@ function onClickCircles(e) {
     });
 }
 
-function onClickLondon(e) {
-
+function onClickCity(e) {
+  var circle = e.target;
   var circlebounds = e.target.getBounds();
-    clearObjects(visibleStations);
-    for( let i = 0; i<stations.length; ++i){
-                      drawStation(i);
+  clearObjects(visibleStations);
+
+    for (var station in stations) {
+      drawStation(station);
     }
-var latlng = [51.5074, -0.1278];
-
-
+    var latlng = circle.getLatLng();
     map.setView(latlng, 12);
 
 
