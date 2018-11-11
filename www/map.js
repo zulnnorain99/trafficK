@@ -294,15 +294,22 @@ ul {
 </center>
   `;
 
+
+
+
   for (var i = 0; i < routes.length; i++) {
     htmlToInject += `<div class = "input-color">
                     ${routes[i]}
                         <img src = "route.png"></img>
-                        <a onclick="drawRoute(journeysByHeadCode['${routes[i]}'])" href="#">
+                        <a onclick="drawRoute(journeyRoutes['${routes[i]}'])" href="#">
                           <font size="+2">
                             <b>${journeysByHeadCode[routes[i]][0].origin} ⇨ ${journeysByHeadCode[routes[i]][0].destination}</b>
 
-                            <div class="color-box" style="background-color: ${hsl_col_perc(dwellingStatus, green, red)};"></div>
+                            <div class="color-box" style="background-color: ${hsl_col_perc(
+                              ((journeysByHeadCode[routes[i]][0].delaySecs * 100) / 30),
+
+
+                               green, red)};"></div>
                           </font>
                             </a>
                           </div>
