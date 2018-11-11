@@ -34,6 +34,7 @@ function LoadFile() {
   setDelays();
   asd = getKeys(journeysByHeadCode);
   asd = asd.concat(getKeys(stations));
+  getRoutes();
   autocomplete(document.getElementById("myInput"), [asd]  );
   console.log(asd)
 
@@ -162,10 +163,13 @@ function drawRoute(points) {
       smoothFactor: 1
 
       });
+      clearObjects(visibleroutes);
 
   visibleroutes.push(route);
 
   map.addLayer(route);
+
+  map.setView(getAvgCoord(points),11);
 
 }
 //clear objects
@@ -231,8 +235,11 @@ function autocomplete(inp, arrayofcontent) {
               inp.value = this.getElementsByTagName("input")[0].value;
 
               console.log(inp.value);
-
-              zoomOnStation(stations[inp.value]);
+              if(stations[inp.value])
+                zoomOnStation(stations[inp.value]);
+              else {
+                drawRoute(journeyRoutes[inp.value]);
+              }
 
               /*close the list of autocompleted values,
               (or any other open lists of autocompleted values:*/

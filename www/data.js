@@ -36,7 +36,7 @@ var farncombe_coord = new L.LatLng(51.197198, -0.604523);
 
 
 {'LIPHOOK', 'WALTON ON THAMES', 'ROWLANDS CASTLE', 'PETERSFIELD', 'WIMBLEDON (WESSEX SIDE)', 'EARLSFIELD', 'HILSEA', 'GUILDFORD', 'BEDHAMPTON', 'WORPLESDON',
- 'LONDON WATERLOO', 'WOKING', 'BYFLEET & NEW HAW', 'PORTSMOUTH & SOUTHSEA', 'HAVANT', 'GODALMING', 'FRATTON', 'VAUXHALL (MAIN)', 'HERSHAM', 'HASLEMERE',
+ 'LONDON WATERLOO', 'WOKING', 'BYFLEET AND NEW HAW', 'PORTSMOUTH AND SOUTHSEA', 'HAVANT', 'GODALMING', 'FRATTON', 'VAUXHALL (MAIN)', 'HERSHAM', 'HASLEMERE',
  'WEST BYFLEET', 'MILFORD', 'CLAPHAM JUNCTION MAIN (9-11)', 'SURBITON', 'PORTSMOUTH HARBOUR', 'WITLEY', 'ESHER', 'LISS', 'WEYBRIDGE', 'FARNCOMBE'}
 
 var waterloo_london = [waterloo_london_coord, "Waterloo London", 100];
@@ -58,8 +58,8 @@ var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'WORPLESDON':[worplesdon_coord,"Worplesdon",0],
                 'LONDON WATERLOO':[waterloo_london_coord,"Waterloo",0],
                 'WOKING':[woking_coord,"Woking", 0],
-                'BYFLEET & NEW HAW':[byfleet_and_new_haw_coord,"Byfleet & New Haw",0],
-                'PORTSMOUTH & SOUTHSEA':[portsmouth_and_southsea_coord,"Portsmouth & Southsea",0],
+                'BYFLEET AND NEW HAW':[byfleet_and_new_haw_coord,"Byfleet & New Haw",0],
+                'PORTSMOUTH AND SOUTHSEA':[portsmouth_and_southsea_coord,"Portsmouth & Southsea",0],
                 'HAVANT':[havant_coord, "Havant", 0],
                 'GODALMING':[godalming_coord,"Godalming",0],
                 'FRATTON':[fratton_coord,"Fratton",0],
@@ -120,9 +120,21 @@ parse = function(line){
 }
 
 //routes
+var journeyRoutes = {};
 var route1_points = [];
 
+function getRoutes (){
+  for(headCode in journeysByHeadCode){
+    var stationArray = [];
+    for(var i = 0; i< journeysByHeadCode[headCode].length; i++){
 
+      if(journeysByHeadCode[headCode][i].station && !stationArray.includes(stations[journeysByHeadCode[headCode][i].station][0])){
+        stationArray.push(stations[journeysByHeadCode[headCode][i].station][0]);
+      }
+    }
+    journeyRoutes[headCode] = stationArray;
+  }
+}
 var routes = [route1_points];
 
 function setDelays(){
