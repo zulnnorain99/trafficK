@@ -295,7 +295,7 @@ function showStationDetails(stationValue) {
 }
 
 function onClickCircles(e) {
-  console.log(currentStation);
+  console.log(e);
     clearObjects(visibleroutes, e);
   //  zoomOnStation();
 
