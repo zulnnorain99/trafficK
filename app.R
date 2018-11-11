@@ -38,6 +38,7 @@ ui <- fluidPage(
     tags$link(rel = "stylesheet", type = "text/css", href = "https://unpkg.com/leaflet@1.3.4/dist/leaflet.css",
               integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==",
    crossorigin=""),
+   tags$link(rel = "stylesheet", href = "https://www.w3schools.com/w3css/4/w3.css"),
    tags$script(src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js",
                integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==",
                crossorigin="")
@@ -74,7 +75,10 @@ ui <- fluidPage(
                 
                 box(height="1000px",
                     
-                    tags$div(id="detailsId")
+                    tags$div(id="detailsId"),
+                    tags$script(src="sdetailshtml.js"),
+                    tags$script(src="stationsDetails.js")
+                    
                     
                     
                     )

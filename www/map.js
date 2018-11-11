@@ -12,6 +12,8 @@ const red = 0,
 
 var stationsNames = Object.keys(stations);
 
+var currentStation = "empty";
+
  var asd = [];
 function getKeys(dict){
 var keys = [];
@@ -38,6 +40,7 @@ function LoadFile() {
   console.log(asd)
 
 }
+
 
 
 
@@ -114,6 +117,8 @@ prts.on('mouseout', resetHighlight);
 visibleStations.push(prts);
 
 
+
+
 //drawing objects
 
 /*for (var i = 0; i < routes.length; i++) {
@@ -185,13 +190,94 @@ function zoomOnStation(stationValue) {
   clearObjects(visibleroutes);
   var latlng = stationValue[0];
   map.setView(latlng, 13);
+
+  currentStation = stationValue[1];
+
+  showStationDetails(stationValue);
 }
 
 
 
+function showStationDetails(stationValue) {
 
 
 
+
+  dwellingStatus = (stationValue[2]*100) / 30;
+  if(dwellingStatus > 100){
+    dwellingStatus = 100;
+  }
+  routes = ["6Z25", "6Y22"];
+
+
+  var htmlToInject = `<style>*
+{
+    padding: 0;
+    margin: 0;
+}
+#over
+{
+    position:absolute;
+    width:100%;
+    height:100%;
+    text-align: center; /*handles the horizontal centering*/
+}
+/*handles the vertical centering*/
+.Centerer
+{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+.Centered
+{
+    display: inline-block;
+    vertical-align: middle;
+}</style>`
+;
+
+   htmlToInject += `
+  <div id="over">
+  <img class="Centered" width="250px" height="200px" src = "stations/${currentStation}.png"> </img>
+</div>
+
+</br></br></br></br></br></br></br></br></br></br></br></br>
+
+<div class="w3-light-grey w3-round-xlarge">
+ <div class="w3-container w3-blue w3-round-xlarge" style="width:${dwellingStatus}%">${dwellingStatus}%</div>
+</div>
+
+  `;
+
+  for (var i = 0; i < routes.length; i++) {
+    htmlToInject += `<a href="#"><div>
+
+                        <img src = "route.png"></img>
+                          <font size="+2">
+                            <b>${journeysByHeadCode[routes[i]][0].origin} - ${journeysByHeadCode[routes[i]][0].destination}</b>
+                          </font>
+
+                          </div>
+                      </a>
+                      `;
+  }
+
+
+
+
+
+
+  document.getElementById("detailsId").innerHTML = htmlToInject;
+  console.log(currentStation);
+}
+
+function onClickCircles(e) {
+  console.log(currentStation);
+    clearObjects(visibleroutes, e);
+  //  zoomOnStation();
+
+
+}
 
 
 

@@ -27,15 +27,7 @@ layer.setStyle({
 
 
 
-function onClickCircles(e) {
 
-    clearObjects(visibleroutes, e);
-
-    map.fitBounds(e.target.getBounds());
-    var circle = e.target;
-    circle.setStyle({  //coordinate
-    });
-}
 
 function onClickCity(e) {
   var circle = e.target;
@@ -47,6 +39,5 @@ function onClickCity(e) {
     }
     var latlng = circle.getLatLng();
     map.setView(latlng, 12);
-
 
 }
