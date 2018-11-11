@@ -36,7 +36,7 @@ function LoadFile() {
   asd = asd.concat(getKeys(stations));
   getRoutes();
   autocomplete(document.getElementById("myInput"), [asd]  );
-  console.log(asd)
+  //console.log(asd)
 
 }
 
@@ -234,7 +234,7 @@ function autocomplete(inp, arrayofcontent) {
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
 
-              console.log(inp.value);
+              //console.log(inp.value);
               if(stations[inp.value])
                 zoomOnStation(stations[inp.value]);
               else {

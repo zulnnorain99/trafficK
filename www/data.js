@@ -39,12 +39,7 @@ var farncombe_coord = new L.LatLng(51.197198, -0.604523);
  'LONDON WATERLOO', 'WOKING', 'BYFLEET AND NEW HAW', 'PORTSMOUTH AND SOUTHSEA', 'HAVANT', 'GODALMING', 'FRATTON', 'VAUXHALL (MAIN)', 'HERSHAM', 'HASLEMERE',
  'WEST BYFLEET', 'MILFORD', 'CLAPHAM JUNCTION MAIN (9-11)', 'SURBITON', 'PORTSMOUTH HARBOUR', 'WITLEY', 'ESHER', 'LISS', 'WEYBRIDGE', 'FARNCOMBE'}
 
-var waterloo_london = [waterloo_london_coord, "Waterloo London", 100];
-var clapham_junction_london = [clapham_junction_main_coord, "Clapham Junction London",50];
-var vauxhall_london = [vauxhall_main_coord, "Vauxhall London",100];
-var wimbledon = [wimbledon_coord, "Wimbledon",10];
-var surbition = [surbition_coord, "Surbition",79];
-var earlsfield = [earlsfield_coord, "Earlsfield",12];
+
 
 var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'WALTON ON THAMES':[walton_on_thames_coord,"Walton on Thames",0],
@@ -77,7 +72,10 @@ var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'WEYBRIDGE':[weybridge_coord,"Weybrdge",0],
                 'FARNCOMBE':[farncombe_coord,"Farncombe",0]};
 
-
+for(station in stations){
+  stations[station].push(station)
+  ////console.log(stations[station]);
+}
 var journeysByHeadCode = {};
 var journeysByStation = {};
 function Journey (headCode, date, origin, destination, station, movementCategory, actualIn, actualOut, expectedIn, expectedOut, delaySecs ){
@@ -142,8 +140,8 @@ function setDelays(){
     var avg = calAvg(journeysByStation[station]);
     // console.log(avg);
     stations[station][2] = (avg*100)/30;
-    console.log(avg);
-    console.log( (avg*100) / 30);
+  //  console.log(avg);
+  //  console.log( (avg*100) / 30);
 
   }
 }
@@ -157,6 +155,6 @@ function calAvg(journeys){
 
     sum+= parseInt(journey.delaySecs);
   }
-  console.log("AVG IS ",sum,journey.delaySecs,journeys.length);
+  ////console.log("AVG IS ",sum,journey.delaySecs,journeys.length);
   return sum/journeys.length;
 }
