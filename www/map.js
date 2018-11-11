@@ -167,7 +167,7 @@ function drawStation(station) {
 }
 
 //draw routes
-function drawRoute(points, headCode) {
+function drawRoute(points, headCode , station = undefined) {
   console.log(headCode);
   var route = new L.Polyline(points, {
       color: '#00a',
@@ -183,70 +183,133 @@ function drawRoute(points, headCode) {
   map.addLayer(route);
 
   map.setView(getAvgCoord(points),11);
-  html = `<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-div {
-  
+   var htmlToInject = `<style>*
+{
+    padding: 0;
+    margin: 0;
 }
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
+#over
+{
+    position:absolute;
+    width:100%;
+    height:100%;
+    text-align: center; /*handles the horizontal centering*/
 }
-body{
-  height:20px;
-
+/*handles the vertical centering*/
+.Centerer
+{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }
-th, td {
-    text-align: left;
-    padding: 8px;
+.Centered
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+ul {
+    margin: 20px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
-</style>
-</head>
-<body>
-<h1>${headCode}</h1>
-<div style="overflow-x:auto; class="table">
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Origin</th>
-      <th>Destination</th>
-      <th>Current Station</th>
-      <th>Movement Category</th>
-      <th>Time In</th>
-      <th>Expected Time In</th>
-      <th>Time Out</th>
-      <th>Expected Time Out</th>
-      <th>Delay (seconds)</th>
-    </tr>`;
-    console.log(journeysByHeadCode[headCode]);
-  for(var i = 0; i< journeysByHeadCode[headCode].length;i++){
-    var journey = journeysByHeadCode[headCode][i];
-  html+=  `<tr>
-      <td>${journey.date}</td>
-      <td>${journey.origin}</td>
-      <td>${journey.destination}</td>
-      <td>${journey.station}</td>
-      <td>${journey.movementCategory}</td>
-      <td>${journey.actualIn}</td>
-      <td>${journey.expectedIn}</td>
-      <td>${journey.actualOut}</td>
-      <td>${journey.expectedOut}</td>
-      <td>${journey.delaySecs}</td>
-    </tr>`}
+.input-color {
+    position: relative;
+}
+.input-color input {
+    padding-left: 20px;
+}
+.input-color .color-box {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-color: #ccc;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+</style>`
+;
 
-  html+=`</table></div>
-</body>
-</html>
-`;
+   htmlToInject += `
+  <div id="over">
+  <img class="Centered" width="250px" height="200px" src = "stations/${currentStation}.png"> </img>
+</div>
 
-document.getElementById("detailsId").innerHTML = html;
+</br></br></br></br></br></br></br></br></br></br></br></br>
+
+
+<center>
+`;if(station && station != journeysByHeadCode[headCode][0].destination){htmlToInject+=`
+<h1>${journeysByHeadCode[headCode][0].origin} ⇨ ${journeysByHeadCode[headCode][0].destination}</h1>
+</center>
+  `}else if(station && station == journeysByHeadCode[headCode][0].destination){
+    htmlToInject+=`
+    <h1>TERMINATES HERE</h1>
+    </center>
+      `;
+  }else{
+    htmlToInject+=`
+    <h1>${journeysByHeadCode[headCode][0].origin}⇨ ${journeysByHeadCode[headCode][0].destination}</h1>
+    </center>
+      `;
+  };
+
+
+var count = 0;
+
+  for (var i =  journeysByHeadCode[headCode].length-50; i < journeysByHeadCode[headCode].length; i++) {
+
+    var jrny =  journeysByHeadCode[headCode][i];
+    if(station && station == journeysByHeadCode[headCode][0].destination && jrny.actualOut) continue;
+  if(station && station == journeysByHeadCode[headCode][0].destination) {
+    htmlToInject += `<div class = "input-color">
+                       ${jrny.delaySecs}s
+                        <img src = "train.png"></img>
+                        <a  href="#">
+                          <font size="+2">
+                            <b>Date: ${jrny.date} | Arrival Time: ${jrny.actualIn.split(" ")[1]}</b>
+                            <div class="color-box" style="background-color: ${hsl_col_perc(
+                              ((journeysByHeadCode[headCode][i].delaySecs * 100) / 30),
+
+
+                               green, red)};"></div>
+                          </font>
+                            </a>
+                          </div>
+
+                      `;
+                      count++;
+                      if(count > 7) break;
+  }
+  else{
+    if(!jrny.actualIn || !jrny.actualOut || !jrny.expectedOut|| !jrny.expectedIn || !jrny.delaySecs) continue;
+    htmlToInject += `<div class = "input-color">
+                  `;if(jrny.delaySecs < 10){htmlToInject+=`
+                      0${jrny.delaySecs}s
+                      `}else{
+                        htmlToInject+=`${jrny.delaySecs}s`
+                      }
+                      htmlToInject+=`
+                        <img src = "train.png"></img>
+                        <a  href="#">
+                          <font size="+2">
+                            <b>Date: ${jrny.date} | Arrival: ${jrny.actualIn.split(" ")[1]} | ETA:${jrny.expectedIn.split(" ")[1]} | Departure: ${jrny.actualOut.split(" ")[1]} | ETD: ${jrny.expectedOut.split(" ")[1]}</b>
+                            <div class="color-box" style="background-color: ${hsl_col_perc(
+                              ((journeysByHeadCode[headCode][i].delaySecs * 100) / 30),
+
+
+                               green, red)};"></div>
+                          </font>
+                            </a>
+                          </div>
+
+                      `;
+  }
+    count++;
+    if(count > 6) break;
+
+  }
+
+document.getElementById("detailsId").innerHTML = htmlToInject;
 }
 //clear objects
 function clearObjects(objects) {
@@ -371,7 +434,7 @@ ul {
     htmlToInject += `<div class = "input-color">
                     ${routes[i]}
                         <img src = "route.png"></img>
-                        <a onclick="drawRoute(journeyRoutes['${routes[i]}'],'${routes[i]}')" href="#">
+                        <a onclick="drawRoute(journeyRoutes['${routes[i]}'],'${routes[i]}','${stationValue[3]}')" href="#">
                           <font size="+2">
                             <b>${journeysByHeadCode[routes[i]][0].origin} ⇨ ${journeysByHeadCode[routes[i]][0].destination}</b>
 
