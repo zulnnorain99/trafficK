@@ -101,7 +101,14 @@ parse = function(line){
   if(journeysByStation[journey.station]){
     journeysByStation[journey.station].push(journey);
   }else{
-  journeysByStation[journey.station] = [journey]}
+  journeysByStation[journey.station] = [journey]
+} if(!journey.station){
+  if(journeysByStation[journey.origin]){
+    journeysByStation[journey.origin].push(journey);
+  }else{
+  journeysByStation[journey.origin] = [journey]
+}
+}
 
   if(journeysByHeadCode[journey.headCode]){
     journeysByHeadCode[journey.headCode].push(journey);
@@ -115,7 +122,6 @@ parse = function(line){
 
 //routes
 var journeyRoutes = {};
-var route1_points = [];
 
 function getRoutes (){
   for(headCode in journeysByHeadCode){
@@ -129,7 +135,6 @@ function getRoutes (){
     journeyRoutes[headCode] = stationArray;
   }
 }
-var routes = [route1_points];
 
 function setDelays(){
   for(station in stations){
