@@ -43,6 +43,9 @@ function LoadFile() {
     stations[station].push(station)
     //////console.log(stations[station]);
   }
+  for (var station in stations) {
+    drawStation(station);
+  }
 
   //console.log("LOADED")
 
@@ -75,10 +78,29 @@ map.attributionControl.setPrefix(''); // Don't show the 'Powered by Leaflet' tex
 
 
 function drawStation(station) {
-  console.log(stations[station][2]);
+
+
+  var st_key = 'WATERLOO'
+  var keys = Object.keys(journeysByStation);
+
+
+  console.log(keys);
+
+  for (var i = 0; i < keys.length; i++) {
+    if(stations[keys[i]] == station){
+      st_key = keys[i];
+      break;
+    }
+  }
+
+  console.log(st_key);
   var a = new L.circle(stations[station][0], {  //coordinates
-  color: `${hsl_col_perc(stations[station][2], green, red)}`, //congestion value
-  fillColor: `${hsl_col_perc(stations[station][2], green, red)}`,
+  color: `${hsl_col_perc((
+    (getDelayAvg(journeysByStation[station]) * 100) / 30),
+     green, red)}`, //congestion value
+  fillColor: `${hsl_col_perc((
+    (getDelayAvg(journeysByStation[station]) * 100) / 30),
+     green, red)}`,
   fillOpacity: 0.8,
   radius: 500
   });
@@ -153,8 +175,8 @@ ul {
     padding-left: 20px;
 }
 .input-color .color-box {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     display: inline-block;
     background-color: #ccc;
     position: absolute;
@@ -204,10 +226,12 @@ var count = 0;
     var jrny =  journeysByHeadCode[headCode][i];
     if(station && station == journeysByHeadCode[headCode][0].destination && jrny.actualOut) continue;
   if(station && station == journeysByHeadCode[headCode][0].destination) {
-    htmlToInject += `<div class = "input-color">
-                       ${jrny.delaySecs}s
-                        <img src = "train.png"></img>
-                        <a  href="#">
+    htmlToInject += `
+
+    <div class = "input-color">
+
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src = "train.png"></img>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <a  onclick="showCCTV()"  href="#">
                           <font size="+2">
                             <b>Date: ${jrny.date} | Arrival Time: ${jrny.actualIn.split(" ")[1]}</b>
                             <div class="color-box" style="background-color: ${hsl_col_perc(
@@ -226,14 +250,10 @@ var count = 0;
   else{
     if(!jrny.actualIn || !jrny.actualOut || !jrny.expectedOut|| !jrny.expectedIn || !jrny.delaySecs) continue;
     htmlToInject += `<div class = "input-color">
-                  `;if(jrny.delaySecs < 10){htmlToInject+=`
-                      0${jrny.delaySecs}s
-                      `}else{
-                        htmlToInject+=`${jrny.delaySecs}s`
-                      }
+                  `;
                       htmlToInject+=`
-                        <img src = "train.png"></img>
-                        <a  href="#">
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src = "train.png"></img>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <a onclick="showCCTV()"   href="#">
                           <font size="+2">
                             <b>Date: ${jrny.date} | Arrival: ${jrny.actualIn.split(" ")[1]} | ETA:${jrny.expectedIn.split(" ")[1]} | Departure: ${jrny.actualOut.split(" ")[1]} | ETD: ${jrny.expectedOut.split(" ")[1]}</b>
                             <div class="color-box" style="background-color: ${hsl_col_perc(
@@ -344,8 +364,8 @@ ul {
     padding-left: 20px;
 }
 .input-color .color-box {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     display: inline-block;
     background-color: #ccc;
     position: absolute;
@@ -375,12 +395,12 @@ ul {
 
 
   for (var i = 0; i < routes.length; i++) {
-    htmlToInject += `<div class = "input-color">
-                    ${routes[i]}
-                        <img src = "route.png"></img>
+    htmlToInject += `                    ${routes[i]}
+<div class = "input-color">
+
                         <a onclick="drawRoute(journeyRoutes['${routes[i]}'],'${routes[i]}','${stationValue[3]}')" href="#">
-                          <font size="+2">
-                            <b>${journeysByHeadCode[routes[i]][0].origin} ⇨ ${journeysByHeadCode[routes[i]][0].destination}</b>
+                          <font size="+2.5">
+                            <b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${journeysByHeadCode[routes[i]][0].origin} ⇨ ${journeysByHeadCode[routes[i]][0].destination}</b>
 
                             <div class="color-box" style="background-color: ${hsl_col_perc((
                               (getDelayAvg(journeysByHeadCode[routes[i]]) * 100) / 30),
@@ -651,7 +671,4 @@ function autocomplete(inp, arrayofcontent) {
 document.addEventListener("click", function (e) {
     closeAllLists(e.target);
 });
-}
-for (var station in stations) {
-  drawStation(station);
 }
