@@ -53,7 +53,7 @@ function LoadFile() {
 
 
 //initialisation.
-var map = L.map('mapid').setView([51.5074, -0.1278], 9);
+var map = L.map('mapid').setView([51.330137, -0.386452], 9);
 
 var visibleroutes = [];
 var visibleStations = [];
@@ -213,7 +213,7 @@ function showStationDetails(stationValue) {
 
 
 
-  dwellingStatus = (stationValue[2]*100) / 30;
+  var dwellingStatus = (stationValue[2]*100) / 30;
   if(dwellingStatus > 100){
     dwellingStatus = 100;
   }
@@ -287,7 +287,7 @@ ul {
 </br></br></br></br></br></br></br></br></br></br></br></br>
 
 <div class="w3-light-grey w3-round-xlarge">
- <div class="w3-container w3-blue w3-round-xlarge" style="width:${dwellingStatus}%">${dwellingStatus}%</div>
+ <div class="w3-container w3-blue w3-round-xlarge" style="width:${dwellingStatus}%">${parseFloat(dwellingStatus).toFixed(1)}%</div>
 </div>
 <center>
 <h1>CURRENT ROUTES</H1>
