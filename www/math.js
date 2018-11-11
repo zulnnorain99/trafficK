@@ -1,14 +1,9 @@
 //MATH
 function hsl_col_perc(percent, start, end) {
-<<<<<<< HEAD
-  if(percent > 100)
-      percent = 100;
-=======
 
   if(percent > 100)
     percent = 100;
 
->>>>>>> a4ed0184a9ac68b7fbde265070890039f4a19a49
   var a = percent / 100,
       b = (end - start) * a,
       c = b + start;
