@@ -506,10 +506,14 @@ CAM #003 - <b>TCKT-OFFICE</b>
 </font>
 </br>
 `;
-/*htmlToInject+=`<video loop autoplay width="400" height="225">
+/*
+htmlToInject+=`<video loop autoplay width="400" height="225">
   <source src="cctv/gate.m4v" type="video/mp4">
 </video></br>
-CAM #001`;*/
+<font face="Consolas">
+
+CAM #004 - <b>GATE</b>
+</font>`;*/
 
 
 document.getElementById("detailsId").innerHTML = htmlToInject;
