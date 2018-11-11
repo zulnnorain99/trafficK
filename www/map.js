@@ -455,24 +455,55 @@ var htmlToInject = `<style>#wrapper {
 }</style>`;
 
 
-htmlToInject += `<div>
-                    <img src = "cctv_big.png"></img>
+htmlToInject += `<div >
+                    <img height="200px" src = "cctv_big.png"></img>
+                    <img height="200px" src = "download.png"></img>
+
                     </div>`;
 
 
-htmlToInject += `<div id="wrapper">
-<video autoplay width="400" height="225">
+htmlToInject += `
+<video loop autoplay width="400" height="225">
   <source src="cctv/cam4.m4v" type="video/mp4">
-</video>`;
-htmlToInject+=`<video autoplay width="400" height="225">
+</video>
+
+</br>
+<font face="Consolas">
+
+CAM #001 - <b>WILTON-ROADS-EXITS</b>
+</font>
+</br>
+
+`
+
+
+
+;
+htmlToInject+=`<video loop autoplay width="400" height="225">
   <source src="cctv/cam3.m4v" type="video/mp4">
-</video>`;
-htmlToInject+=`<video autoplay width="400" height="225">
+</video>
+</br>
+<font face="Consolas">
+
+CAM #002 - <b>PLATFORM-2</b>
+
+<font>
+</br>
+`;
+htmlToInject+=`<video loop autoplay width="400" height="225">
   <source src="cctv/cam15.mp4" type="video/mp4">
-</video>`;
-htmlToInject+=`<video autoplay width="400" height="225">
+</video></br>
+<font face="Consolas">
+
+CAM #003 - <b>TCKT-OFFICE</b>
+
+</font>
+</br>
+`;
+/*htmlToInject+=`<video loop autoplay width="400" height="225">
   <source src="cctv/gate.m4v" type="video/mp4">
-</video></div>`;
+</video></br>
+CAM #001`;*/
 
 
 document.getElementById("detailsId").innerHTML = htmlToInject;
