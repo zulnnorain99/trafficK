@@ -294,7 +294,7 @@ function showStationDetails(stationValue) {
   routes = [];
   origin = [];
   destination = [];
-  //console.log(journeysByStation[stationValue[3]])
+  console.log(journeysByStation[stationValue[3]])
 
   for (var i= 0; i < journeysByStation[stationValue[3]].length; i++){
 
@@ -382,10 +382,8 @@ ul {
                           <font size="+2">
                             <b>${journeysByHeadCode[routes[i]][0].origin} ⇨ ${journeysByHeadCode[routes[i]][0].destination}</b>
 
-                            <div class="color-box" style="background-color: ${hsl_col_perc(
-                              ((journeysByHeadCode[routes[i]][journeysByHeadCode[routes[i]].length-1].delaySecs * 100) / 30),
-
-
+                            <div class="color-box" style="background-color: ${hsl_col_perc((
+                              (getDelayAvg(journeysByHeadCode[routes[i]]) * 100) / 30),
                                green, red)};"></div>
                           </font>
                             </a>
@@ -413,7 +411,15 @@ htmlToInject +=`  <div class = "input-color">
   //console.log(currentStation);
 }
 
-
+function getDelayAvg(journeys){
+  console.log(journeys)
+  var delaySum =0;
+  for(var i=0; i< journeys.length; i++){
+    var jny = journeys[i];
+    delaySum += jny.delaySecs;
+  }
+  return delaySum/journeys.length;
+}
 function showCCTV() {
 var htmlToInject = `<style>#wrapper {
     width: 920px;
