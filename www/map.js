@@ -324,20 +324,24 @@ function onClickCircles(e) {
     clearObjects(visibleroutes);
 
     var latlng = e.target.getLatLng();
+    var s = getStationFromCircle(latlng);
+    zoomOnStation(s);
 
-    for (var station in stations) {
-    var s = stations[station];
 
-          if(s[0] == latlng){
-            zoomOnStation(s);
-            return;
-
-      }
-    }
 
 
 }
 
+function getStationFromCircle(latlng) {
+  for (var station in stations) {
+  var s = stations[station];
+
+        if(s[0] == latlng){
+          return s;
+
+    }
+  }
+}
 
 
 
