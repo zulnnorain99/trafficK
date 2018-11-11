@@ -72,10 +72,6 @@ var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'WEYBRIDGE':[weybridge_coord,"Weybrdge",0],
                 'FARNCOMBE':[farncombe_coord,"Farncombe",0]};
 
-for(station in stations){
-  stations[station].push(station)
-  ////console.log(stations[station]);
-}
 var journeysByHeadCode = {};
 var journeysByStation = {};
 function Journey (headCode, date, origin, destination, station, movementCategory, actualIn, actualOut, expectedIn, expectedOut, delaySecs ){

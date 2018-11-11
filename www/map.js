@@ -38,7 +38,14 @@ function LoadFile() {
   asd = asd.concat(getKeys(stations));
   getRoutes();
   autocomplete(document.getElementById("myInput"), [asd]  );
-  //console.log(asd)
+
+  for(station in stations){
+    stations[station].push(station)
+    ////console.log(stations[station]);
+  }
+
+  console.log("LOADED")
+
 
 }
 
@@ -206,12 +213,24 @@ function showStationDetails(stationValue) {
 
 
 
-
   dwellingStatus = (stationValue[2]*100) / 30;
   if(dwellingStatus > 100){
     dwellingStatus = 100;
   }
-  routes = ["6Z25", "6Y22"];
+  routes = [];
+  origin = [];
+  destination = [];
+  for (var i= 0; i < journeysByStation[stationValue[3]].length; i++){
+
+    journey = journeysByStation[stationValue[3]][i]
+    if(!origin.includes(journey.origin)&&!destination.includes(journey.destination)){
+    routes.push(journey.headCode);
+    origin.push(journey.origin)
+    destination.push(destination.origin)
+
+    console.log(journey.headCode,"WAS NOT INCLUDED")
+  }
+  }
 
 
   var htmlToInject = `<style>*
