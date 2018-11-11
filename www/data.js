@@ -2,7 +2,6 @@
 
 
 var waterloo_london_coord = new L.LatLng(51.5031653, -0.1144938);
-var clapham_junction_main_coord = new L.LatLng(51.4636882,  -0.1712424);
 var vauxhall_main_coord = new L.LatLng(51.486183, -0.122860);
 var wimbledon_coord = new L.LatLng(51.4214158, -0.2075719);
 var surbition_coord = new L.LatLng(51.3947441, -0.3063072);
@@ -63,7 +62,6 @@ var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'HASLEMERE':[haslemere_coord,"Haslemere",0],
                 'WEST BYFLEET':[west_byfleet_coord,"West Byfleet",0],
                 'MILFORD':[milford_coord,"Milford",0],
-                'CLAPHAM JUNCTION MAIN (9-11)':[clapham_junction_main_coord,"Clapham Junction",0],
                 'SURBITON':[surbition_coord,"Surbiton",0],
                 'PORTSMOUTH HARBOUR':[portsmouth_harbour_coord,"Portsmouth Harbour",0],
                 'WITLEY':[witley_coord,"Witley",0],
@@ -111,7 +109,7 @@ parse = function(line){
   }else{
     journeysByHeadCode[journey.headCode] = [journey];
   }
-console.log(journey);
+//console.log(journey);
 
 
 }
