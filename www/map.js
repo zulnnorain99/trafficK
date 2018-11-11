@@ -104,7 +104,6 @@ function drawStation(station) {
 
 //draw routes
 function drawRoute(points, headCode , station = undefined) {
-  console.log(headCode);
   var route = new L.Polyline(points, {
       color: '#00a',
       weight: 10,
@@ -174,7 +173,15 @@ ul {
 
 
 <center>
-`;if(station && station != journeysByHeadCode[headCode][0].destination){htmlToInject+=`
+`;
+
+
+
+if(station && station != journeysByHeadCode[headCode][0].destination){
+
+
+  htmlToInject+=
+  `
 <h1>${journeysByHeadCode[headCode][0].origin} ⇨ ${journeysByHeadCode[headCode][0].destination}</h1>
 </center>
   `}else if(station && station == journeysByHeadCode[headCode][0].destination){
@@ -244,6 +251,8 @@ var count = 0;
     if(count > 6) break;
 
   }
+
+console.log(htmlToInject);
 
 document.getElementById("detailsId").innerHTML = htmlToInject;
 }
@@ -374,7 +383,7 @@ ul {
                             <b>${journeysByHeadCode[routes[i]][0].origin} ⇨ ${journeysByHeadCode[routes[i]][0].destination}</b>
 
                             <div class="color-box" style="background-color: ${hsl_col_perc(
-                              ((journeysByHeadCode[routes[i]][0].delaySecs * 100) / 30),
+                              ((journeysByHeadCode[routes[i]][journeysByHeadCode[routes[i]].length-1].delaySecs * 100) / 30),
 
 
                                green, red)};"></div>
@@ -444,6 +453,11 @@ var htmlToInject = `<style>#wrapper {
         float: none;
     }
 }</style>`;
+
+
+htmlToInject += `<div>
+                    <img src = "cctv_big.png"></img>
+                    </div>`;
 
 
 htmlToInject += `<div id="wrapper">
@@ -525,11 +539,11 @@ function autocomplete(inp, arrayofcontent) {
               /*insert the value for the autocomplete text field:*/
               inp.value = this.getElementsByTagName("input")[0].value;
 
-              //console.log(inp.value);
+              console.log(inp.value);
               if(stations[inp.value])
                 zoomOnStation(stations[inp.value]);
               else {
-                drawRoute(journeyRoutes[inp.value]);
+                drawRoute(journeyRoutes[inp.value], inp.value);
               }
 
               /*close the list of autocompleted values,
