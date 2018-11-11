@@ -1,4 +1,4 @@
-//colors in hsl_col_perc
+////console//colors in hsl_col_perc
 
 const red = 0,
       yellow = 60,
@@ -41,10 +41,10 @@ function LoadFile() {
 
   for(station in stations){
     stations[station].push(station)
-    ////console.log(stations[station]);
+    //////console.log(stations[station]);
   }
 
-  console.log("LOADED")
+  //console.log("LOADED")
 
 
 }
@@ -220,7 +220,8 @@ function showStationDetails(stationValue) {
   routes = [];
   origin = [];
   destination = [];
-  console.log(journeysByStation[stationValue[3]])
+  //console.log(journeysByStation[stationValue[3]])
+  
   for (var i= 0; i < journeysByStation[stationValue[3]].length; i++){
 
     journey = journeysByStation[stationValue[3]][i]
@@ -229,7 +230,7 @@ function showStationDetails(stationValue) {
     origin.push(journey.origin)
     destination.push(destination.origin)
 
-    console.log(journey.headCode,"WAS NOT INCLUDED")
+    //console.log(journey.headCode,"WAS NOT INCLUDED")
   }
   }
 
@@ -317,11 +318,11 @@ ul {
 
 
   document.getElementById("detailsId").innerHTML = htmlToInject;
-  console.log(currentStation);
+  //console.log(currentStation);
 }
 
 function onClickCircles(e) {
-  console.log("clicked");
+  ////console.log("clicked");
     clearObjects(visibleroutes);
 
     var latlng = e.target.getLatLng();
@@ -335,7 +336,7 @@ function onClickCircles(e) {
 
 function getStationFromCircle(latlng) {
   for ( station in stations) {
-    console.log(station)
+    ////console.log(station)
   var s = stations[station];
 
         if(s[0] == latlng){

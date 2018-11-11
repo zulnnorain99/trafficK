@@ -98,24 +98,20 @@ for (var station in stations) {
 parse = function(line){
   line = line.split(",");
   journey = new Journey(line[0],line[2],line[4],line[5],line[6],line[7],line[8],line[9],line[10],line[11],line[16]);
+  if(!journey.headCode) return;
   if(journeysByStation[journey.station]){
     journeysByStation[journey.station].push(journey);
   }else{
   journeysByStation[journey.station] = [journey]
-} if(!journey.station){
-  if(journeysByStation[journey.origin]){
-    journeysByStation[journey.origin].push(journey);
-  }else{
-  journeysByStation[journey.origin] = [journey]
 }
-}
+
 
   if(journeysByHeadCode[journey.headCode]){
     journeysByHeadCode[journey.headCode].push(journey);
   }else{
     journeysByHeadCode[journey.headCode] = [journey];
   }
-
+console.log(journey);
 
 
 }
@@ -128,7 +124,7 @@ function getRoutes (){
     var stationArray = [];
     for(var i = 0; i< journeysByHeadCode[headCode].length; i++){
 
-      if(journeysByHeadCode[headCode][i].station && !stationArray.includes(stations[journeysByHeadCode[headCode][i].station][0])){
+      if(journeysByHeadCode[headCode][i] && journeysByHeadCode[headCode][i].station && !stationArray.includes(stations[journeysByHeadCode[headCode][i].station][0])){
         stationArray.push(stations[journeysByHeadCode[headCode][i].station][0]);
       }
     }
