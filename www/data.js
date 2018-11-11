@@ -36,15 +36,10 @@ var farncombe_coord = new L.LatLng(51.197198, -0.604523);
 
 
 {'LIPHOOK', 'WALTON ON THAMES', 'ROWLANDS CASTLE', 'PETERSFIELD', 'WIMBLEDON (WESSEX SIDE)', 'EARLSFIELD', 'HILSEA', 'GUILDFORD', 'BEDHAMPTON', 'WORPLESDON',
- 'LONDON WATERLOO', 'WOKING', 'BYFLEET & NEW HAW', 'PORTSMOUTH & SOUTHSEA', 'HAVANT', 'GODALMING', 'FRATTON', 'VAUXHALL (MAIN)', 'HERSHAM', 'HASLEMERE',
+ 'LONDON WATERLOO', 'WOKING', 'BYFLEET AND NEW HAW', 'PORTSMOUTH AND SOUTHSEA', 'HAVANT', 'GODALMING', 'FRATTON', 'VAUXHALL (MAIN)', 'HERSHAM', 'HASLEMERE',
  'WEST BYFLEET', 'MILFORD', 'CLAPHAM JUNCTION MAIN (9-11)', 'SURBITON', 'PORTSMOUTH HARBOUR', 'WITLEY', 'ESHER', 'LISS', 'WEYBRIDGE', 'FARNCOMBE'}
 
-var waterloo_london = [waterloo_london_coord, "Waterloo London", 100];
-var clapham_junction_london = [clapham_junction_main_coord, "Clapham Junction London",50];
-var vauxhall_london = [vauxhall_main_coord, "Vauxhall London",100];
-var wimbledon = [wimbledon_coord, "Wimbledon",10];
-var surbition = [surbition_coord, "Surbition",79];
-var earlsfield = [earlsfield_coord, "Earlsfield",12];
+
 
 var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'WALTON ON THAMES':[walton_on_thames_coord,"Walton on Thames",0],
@@ -58,8 +53,8 @@ var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'WORPLESDON':[worplesdon_coord,"Worplesdon",0],
                 'LONDON WATERLOO':[waterloo_london_coord,"Waterloo",0],
                 'WOKING':[woking_coord,"Woking", 0],
-                'BYFLEET & NEW HAW':[byfleet_and_new_haw_coord,"Byfleet & New Haw",0],
-                'PORTSMOUTH & SOUTHSEA':[portsmouth_and_southsea_coord,"Portsmouth & Southsea",0],
+                'BYFLEET AND NEW HAW':[byfleet_and_new_haw_coord,"Byfleet & New Haw",0],
+                'PORTSMOUTH AND SOUTHSEA':[portsmouth_and_southsea_coord,"Portsmouth & Southsea",0],
                 'HAVANT':[havant_coord, "Havant", 0],
                 'GODALMING':[godalming_coord,"Godalming",0],
                 'FRATTON':[fratton_coord,"Fratton",0],
@@ -77,7 +72,10 @@ var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'WEYBRIDGE':[weybridge_coord,"Weybrdge",0],
                 'FARNCOMBE':[farncombe_coord,"Farncombe",0]};
 
-
+for(station in stations){
+  stations[station].push(station)
+  ////console.log(stations[station]);
+}
 var journeysByHeadCode = {};
 var journeysByStation = {};
 function Journey (headCode, date, origin, destination, station, movementCategory, actualIn, actualOut, expectedIn, expectedOut, delaySecs ){
@@ -120,9 +118,21 @@ parse = function(line){
 }
 
 //routes
+var journeyRoutes = {};
 var route1_points = [];
 
+function getRoutes (){
+  for(headCode in journeysByHeadCode){
+    var stationArray = [];
+    for(var i = 0; i< journeysByHeadCode[headCode].length; i++){
 
+      if(journeysByHeadCode[headCode][i].station && !stationArray.includes(stations[journeysByHeadCode[headCode][i].station][0])){
+        stationArray.push(stations[journeysByHeadCode[headCode][i].station][0]);
+      }
+    }
+    journeyRoutes[headCode] = stationArray;
+  }
+}
 var routes = [route1_points];
 
 function setDelays(){
@@ -130,8 +140,8 @@ function setDelays(){
     var avg = calAvg(journeysByStation[station]);
     // console.log(avg);
     stations[station][2] = (avg*100)/30;
-    console.log(avg);
-    console.log( (avg*100) / 30);
+  //  console.log(avg);
+  //  console.log( (avg*100) / 30);
 
   }
 }
@@ -145,6 +155,6 @@ function calAvg(journeys){
 
     sum+= parseInt(journey.delaySecs);
   }
-  console.log("AVG IS ",sum,journey.delaySecs,journeys.length);
+  ////console.log("AVG IS ",sum,journey.delaySecs,journeys.length);
   return sum/journeys.length;
 }
