@@ -2,6 +2,7 @@
 
 
 var waterloo_london_coord = new L.LatLng(51.5031653, -0.1144938);
+var clapham_junction_main_coord = new L.LatLng(51.4636882,  -0.1712424);
 var vauxhall_main_coord = new L.LatLng(51.486183, -0.122860);
 var wimbledon_coord = new L.LatLng(51.4214158, -0.2075719);
 var surbition_coord = new L.LatLng(51.3947441, -0.3063072);
@@ -62,6 +63,7 @@ var stations = {'LIPHOOK':[liphook_coord,"Liphook",0],
                 'HASLEMERE':[haslemere_coord,"Haslemere",0],
                 'WEST BYFLEET':[west_byfleet_coord,"West Byfleet",0],
                 'MILFORD':[milford_coord,"Milford",0],
+                'CLAPHAM JUNCTION MAIN (9-11)':[clapham_junction_main_coord,"Clapham Junction",0],
                 'SURBITON':[surbition_coord,"Surbiton",0],
                 'PORTSMOUTH HARBOUR':[portsmouth_harbour_coord,"Portsmouth Harbour",0],
                 'WITLEY':[witley_coord,"Witley",0],
@@ -96,22 +98,16 @@ for (var station in stations) {
 parse = function(line){
   line = line.split(",");
   journey = new Journey(line[0],line[2],line[4],line[5],line[6],line[7],line[8],line[9],line[10],line[11],line[16]);
-  if(!journey.headCode) return;
   if(journeysByStation[journey.station]){
     journeysByStation[journey.station].push(journey);
   }else{
-  journeysByStation[journey.station] = [journey]
-}
-
+  journeysByStation[journey.station] = [journey]}
 
   if(journeysByHeadCode[journey.headCode]){
     journeysByHeadCode[journey.headCode].push(journey);
   }else{
     journeysByHeadCode[journey.headCode] = [journey];
   }
-//console.log(journey);
-
-
 }
 
 //routes
@@ -122,7 +118,7 @@ function getRoutes (){
     var stationArray = [];
     for(var i = 0; i< journeysByHeadCode[headCode].length; i++){
 
-      if(journeysByHeadCode[headCode][i] && journeysByHeadCode[headCode][i].station && !stationArray.includes(stations[journeysByHeadCode[headCode][i].station][0])){
+      if(journeysByHeadCode[headCode][i].station && !stationArray.includes(stations[journeysByHeadCode[headCode][i].station][0])){
         stationArray.push(stations[journeysByHeadCode[headCode][i].station][0]);
       }
     }

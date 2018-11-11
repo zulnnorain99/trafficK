@@ -138,6 +138,7 @@ visibleStations.push(prts);
                   drawStation(station);
 }*/
 
+onClickCity();
 
 function drawStation(station) {
   var a = new L.circle(stations[station][0], {  //coordinates
@@ -319,11 +320,11 @@ function clearObjects(objects) {
 }
 
 function zoomOnStation(stationValue) {
-  if(visibleStations.includes(lndn || prts)){
+
     clearObjects(visibleStations);
       for (var station in stations) {
         drawStation(station);
-      }
+
   }
   clearObjects(visibleroutes);
   var latlng = stationValue[0];
@@ -453,10 +454,13 @@ ul {
 htmlToInject +=`  <div class = "input-color">
   <a onclick="saveReport()" href="#">
     <font size="+2">
-      <b>+ Report circumstance</b>
+      <b>+ Report circumstance</b>`;
 
-    </font>
-      </a></div>`
+  htmlToInject += `  <div id="over"><a href ='#'   onclick="showCCTV()">
+    <img class="Centered" width="50px" height="50px" src = "cctv.jpg"> </img>
+    </a>
+  </div>`
+
 
 
 
@@ -464,6 +468,66 @@ htmlToInject +=`  <div class = "input-color">
 
   document.getElementById("detailsId").innerHTML = htmlToInject;
   //console.log(currentStation);
+}
+
+
+function showCCTV() {
+var htmlToInject = `<style>#wrapper {
+    width: 920px;
+    height: auto;
+    margin: 0 auto;
+}
+#home1 {
+    width: 47.5%;
+    height: 300px;
+    float: left;
+    margin-right: 5%;
+}
+
+#home2 {
+    width: 47.5%;
+    height: 300px;
+    float: left;
+}
+
+.clear{
+    clear: both;
+}
+
+@media (max-width:767px) {
+    #wrapper{
+        width: 100%;
+        height: auto;
+    }
+    #home1 {
+        width: 100%;
+        height: auto;
+        float: none;
+    }
+    #home2 {
+        width: 100%;
+        height: auto;
+        float: none;
+    }
+}</style>`;
+
+
+htmlToInject += `<div id="wrapper">
+<video autoplay width="400" height="225">
+  <source src="cctv/cam4.m4v" type="video/mp4">
+</video>`;
+htmlToInject+=`<video autoplay width="400" height="225">
+  <source src="cctv/cam3.m4v" type="video/mp4">
+</video>`;
+htmlToInject+=`<video autoplay width="400" height="225">
+  <source src="cctv/cam15.mp4" type="video/mp4">
+</video>`;
+htmlToInject+=`<video autoplay width="400" height="225">
+  <source src="cctv/gate.m4v" type="video/mp4">
+</video></div>`;
+
+
+document.getElementById("detailsId").innerHTML = htmlToInject;
 }
 
 function onClickCircles(e) {
@@ -531,7 +595,7 @@ function autocomplete(inp, arrayofcontent) {
               if(stations[inp.value])
                 zoomOnStation(stations[inp.value]);
               else {
-                drawRoute(journeyRoutes[inp.value],inp.value);
+                drawRoute(journeyRoutes[inp.value]);
               }
 
               /*close the list of autocompleted values,

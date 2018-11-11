@@ -30,14 +30,14 @@ layer.setStyle({
 
 
 function onClickCity(e) {
-  var circle = e.target;
-  var circlebounds = e.target.getBounds();
+/*  var circle = e.target;
+  var circlebounds = e.target.getBounds();*/
   clearObjects(visibleStations);
 
     for (var station in stations) {
       drawStation(station);
     }
-    var latlng = circle.getLatLng();
-    map.setView(latlng, 12);
+  /*  var latlng = circle.getLatLng();
+    map.setView(latlng, 12);*/
 
 }
