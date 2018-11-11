@@ -189,7 +189,7 @@ function drawRoute(points, headCode) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 div {
-  height:100%;
+  
 }
 table {
     border-collapse: collapse;
@@ -271,7 +271,10 @@ function zoomOnStation(stationValue) {
   showStationDetails(stationValue);
 }
 
-
+function saveReport(){
+var report = window.prompt("Enter the circumstance:");
+alert(`Report saved: ${report}`);
+}
 
 function showStationDetails(stationValue) {
 
@@ -356,6 +359,7 @@ ul {
  <div class="w3-container w3-blue w3-round-xlarge" style="width:${dwellingStatus}%">${parseFloat(dwellingStatus).toFixed(1)}%</div>
 </div>
 <center>
+
 <h1>CURRENT ROUTES</H1>
 </center>
   `;
@@ -381,8 +385,15 @@ ul {
                           </div>
 
                       `;
-  }
 
+  }
+htmlToInject +=`  <div class = "input-color">
+  <a onclick="saveReport()" href="#">
+    <font size="+2">
+      <b>+ Report circumstance</b>
+
+    </font>
+      </a></div>`
 
 
 
