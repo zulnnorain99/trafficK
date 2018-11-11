@@ -1,9 +1,8 @@
 var html = `<!--Make sure the form has the autocomplete function switched off:-->
 <form autocomplete="off" action="/action_page.php">
-  <div class="autocomplete" style="width:130px;">
-    <input id="myInput" type="text" name="myCountry" placeholder="Country">
+  <div class="autocomplete" style="width:200px;">
+    <input id="myInput" type="text" name="myCountry" placeholder="Station/Train/Route">
   </div>
-  <input type="submit">
 </form>`;
 
 html += `<style>* { box-sizing: border-box; }
@@ -22,7 +21,7 @@ input {
   font-size: 16px;
 }
 input[type=text] {
-  background-color: #000;
+  background-color: #f1f1f1;
   width: 100%;
 }
 input[type=submit] {
@@ -53,5 +52,5 @@ input[type=submit] {
 .autocomplete-active {
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important;
-  color: #000;
+  color: #f1f1f1;
 }</style>`;
