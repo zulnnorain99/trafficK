@@ -79,7 +79,6 @@ ui <- fluidPage(
                  # showMap()
 
 
-                tags$script(src="events.js"),
                 tags$script(src="map.js")
                 ),
                 

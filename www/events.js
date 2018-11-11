@@ -41,3 +41,6 @@ function onClickCity(e) {
     map.setView(latlng, 12);*/
 
 }
+for (var station in stations) {
+  drawStation(station);
+}
