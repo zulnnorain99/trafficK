@@ -60,15 +60,26 @@ ui <- fluidPage(
     dashboardBody(
       tabItems(
         tabItem(tabName = "map",
-
+          fluidRow(
+            box( height="1000px",
                   tags$div(id="mapid",
 
-                  tags$style(type = "text/css", "#mapid {height: 910px !important;}")),
+                  tags$style(type = "text/css", "#mapid {height: 1000px !important;}")),
                  # showMap()
 
 
                 tags$script(src="events.js"),
                 tags$script(src="map.js")
+                ),
+                
+                box(height="1000px",
+                    
+                    tags$div(id="detailsId")
+                    
+                    
+                    )
+                
+          )
 
               ),
         tabItem(tabName = "settings",
