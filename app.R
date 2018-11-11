@@ -12,7 +12,9 @@ library(shiny)
 library(leaflet)
 library(png)
 library(shinyjs)
-
+library(devtools)
+install_github("nik01010/dashboardthemes")
+library(dashboardthemes)
 
 dbHeader <- dashboardHeader()
 
@@ -59,6 +61,14 @@ ui <- fluidPage(
       )
     ),
     dashboardBody(
+      
+      ### changing theme
+      shinyDashboardThemes(
+        theme = "poor_mans_flatly"
+      )
+      
+      ### ui tabs
+      ,
       tabItems(
         tabItem(tabName = "map",
           fluidRow(

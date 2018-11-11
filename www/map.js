@@ -53,7 +53,7 @@ function LoadFile() {
 
 
 //initialisation.
-var map = L.map('mapid').setView([51.5074, -0.1278], 9);
+var map = L.map('mapid').setView([51.330137, -0.386452], 9);
 
 var visibleroutes = [];
 var visibleStations = [];
@@ -213,7 +213,7 @@ function showStationDetails(stationValue) {
 
 
 
-  dwellingStatus = (stationValue[2]*100) / 30;
+  var dwellingStatus = (stationValue[2]*100) / 30;
   if(dwellingStatus > 100){
     dwellingStatus = 100;
   }
@@ -289,22 +289,29 @@ ul {
 </br></br></br></br></br></br></br></br></br></br></br></br>
 
 <div class="w3-light-grey w3-round-xlarge">
- <div class="w3-container w3-blue w3-round-xlarge" style="width:${dwellingStatus}%">${dwellingStatus}%</div>
+ <div class="w3-container w3-blue w3-round-xlarge" style="width:${dwellingStatus}%">${parseFloat(dwellingStatus).toFixed(1)}%</div>
 </div>
 <center>
 <h1>CURRENT ROUTES</H1>
 </center>
   `;
 
+
+
+
   for (var i = 0; i < routes.length; i++) {
     htmlToInject += `<div class = "input-color">
                     ${routes[i]}
                         <img src = "route.png"></img>
-                        <a onclick="drawRoute(journeysByHeadCode['${routes[i]}'])" href="#">
+                        <a onclick="drawRoute(journeyRoutes['${routes[i]}'])" href="#">
                           <font size="+2">
                             <b>${journeysByHeadCode[routes[i]][0].origin} ⇨ ${journeysByHeadCode[routes[i]][0].destination}</b>
 
-                            <div class="color-box" style="background-color: ${hsl_col_perc(dwellingStatus, green, red)};"></div>
+                            <div class="color-box" style="background-color: ${hsl_col_perc(
+                              ((journeysByHeadCode[routes[i]][0].delaySecs * 100) / 30),
+
+
+                               green, red)};"></div>
                           </font>
                             </a>
                           </div>
