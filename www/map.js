@@ -454,7 +454,7 @@ ul {
 htmlToInject +=`  <div class = "input-color">
   <a onclick="saveReport()" href="#">
     <font size="+2">
-      <b>+ Report circumstance</b>
+      <b>+ Report circumstance</b>`;
 
   htmlToInject += `  <div id="over"><a href ='#'   onclick="showCCTV()">
     <img class="Centered" width="50px" height="50px" src = "cctv.jpg"> </img>
