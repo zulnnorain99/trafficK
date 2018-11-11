@@ -188,7 +188,7 @@ ul {
 
    htmlToInject += `
   <div id="over">
-  <img class="Centered" width="250px" height="200px" src = "stations/${currentStation}.png"> </img>
+  <img class="Centered" width="250px" height="200px" src = "swr.png"> </img>
 </div>
 
 </br></br></br></br></br></br></br></br></br></br></br></br>
