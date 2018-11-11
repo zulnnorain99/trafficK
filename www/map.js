@@ -188,6 +188,9 @@ function drawRoute(points, headCode) {
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+div{
+    height:100%;
+}
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -207,10 +210,6 @@ tr:nth-child(even){background-color: #f2f2f2}
 </style>
 </head>
 <body>
-
-<h2>Responsive Table</h2>
-<p>If you have a table that is too wide, you can add a container element with overflow-x:auto around the table, and it will display a horizontal scroll bar when needed.</p>
-<p>Resize the browser window to see the effect. Try to remove the div element and see what happens to the table.</p>
 
 <div style="overflow-x:auto;">
   <table>
