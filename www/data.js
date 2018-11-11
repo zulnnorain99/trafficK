@@ -119,7 +119,6 @@ parse = function(line){
 
 //routes
 var journeyRoutes = {};
-var route1_points = [];
 
 function getRoutes (){
   for(headCode in journeysByHeadCode){
@@ -133,7 +132,6 @@ function getRoutes (){
     journeyRoutes[headCode] = stationArray;
   }
 }
-var routes = [route1_points];
 
 function setDelays(){
   for(station in stations){

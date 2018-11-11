@@ -237,7 +237,27 @@ function showStationDetails(stationValue) {
 {
     display: inline-block;
     vertical-align: middle;
-}</style>`
+}
+ul {
+    margin: 20px;
+}
+
+.input-color {
+    position: relative;
+}
+.input-color input {
+    padding-left: 20px;
+}
+.input-color .color-box {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-color: #ccc;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+</style>`
 ;
 
    htmlToInject += `
@@ -250,19 +270,24 @@ function showStationDetails(stationValue) {
 <div class="w3-light-grey w3-round-xlarge">
  <div class="w3-container w3-blue w3-round-xlarge" style="width:${dwellingStatus}%">${dwellingStatus}%</div>
 </div>
-
+<center>
+<h1>CURRENT ROUTES</H1>
+</center>
   `;
 
   for (var i = 0; i < routes.length; i++) {
-    htmlToInject += `<a href="#"><div>
-
+    htmlToInject += `<div class = "input-color">
+                    ${routes[i]}
                         <img src = "route.png"></img>
+                        <a onclick="drawRoute(journeysByHeadCode['${routes[i]}'])" href="#">
                           <font size="+2">
-                            <b>${journeysByHeadCode[routes[i]][0].origin} - ${journeysByHeadCode[routes[i]][0].destination}</b>
-                          </font>
+                            <b>${journeysByHeadCode[routes[i]][0].origin} ⇨ ${journeysByHeadCode[routes[i]][0].destination}</b>
 
+                            <div class="color-box" style="background-color: ${hsl_col_perc(dwellingStatus, green, red)};"></div>
+                          </font>
+                            </a>
                           </div>
-                      </a>
+
                       `;
   }
 
@@ -276,9 +301,20 @@ function showStationDetails(stationValue) {
 }
 
 function onClickCircles(e) {
-  console.log(currentStation);
-    clearObjects(visibleroutes, e);
-  //  zoomOnStation();
+  console.log("clicked");
+    clearObjects(visibleroutes);
+
+    var latlng = e.target.getLatLng();
+
+    for (var station in stations) {
+    var s = stations[station];
+
+          if(s[0] == latlng){
+            zoomOnStation(s);
+            return;
+
+      }
+    }
 
 
 }
