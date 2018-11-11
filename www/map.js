@@ -188,8 +188,8 @@ function drawRoute(points, headCode) {
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-div{
-    height:100%;
+div {
+  height:100%;
 }
 table {
     border-collapse: collapse;
@@ -210,8 +210,8 @@ tr:nth-child(even){background-color: #f2f2f2}
 </style>
 </head>
 <body>
-
-<div style="overflow-x:auto;">
+<h1>${headCode}</h1>
+<div style="overflow-x:auto; class="table">
   <table>
     <tr>
       <th>Date</th>
@@ -241,7 +241,7 @@ tr:nth-child(even){background-color: #f2f2f2}
       <td>${journey.delaySecs}</td>
     </tr>`}
 
-  html==`</table></div>
+  html+=`</table></div>
 </body>
 </html>
 `;
