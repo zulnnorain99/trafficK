@@ -138,6 +138,7 @@ visibleStations.push(prts);
                   drawStation(station);
 }*/
 
+onClickCity();
 
 function drawStation(station) {
   var a = new L.circle(stations[station][0], {  //coordinates
@@ -167,8 +168,7 @@ function drawStation(station) {
 }
 
 //draw routes
-function drawRoute(points, headCode) {
-  console.log(headCode);
+function drawRoute(points) {
   var route = new L.Polyline(points, {
       color: '#00a',
       weight: 10,
@@ -183,71 +183,7 @@ function drawRoute(points, headCode) {
   map.addLayer(route);
 
   map.setView(getAvgCoord(points),11);
-  html = `<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
-}
-body{
-  height:20px;
 
-}
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-</style>
-</head>
-<body>
-
-<h2>Responsive Table</h2>
-<p>If you have a table that is too wide, you can add a container element with overflow-x:auto around the table, and it will display a horizontal scroll bar when needed.</p>
-<p>Resize the browser window to see the effect. Try to remove the div element and see what happens to the table.</p>
-
-<div style="overflow-x:auto;">
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Origin</th>
-      <th>Destination</th>
-      <th>Current Station</th>
-      <th>Movement Category</th>
-      <th>Time In</th>
-      <th>Expected Time In</th>
-      <th>Time Out</th>
-      <th>Expected Time Out</th>
-      <th>Delay (seconds)</th>
-    </tr>`;
-    console.log(journeysByHeadCode[headCode]);
-  for(var i = 0; i< journeysByHeadCode[headCode].length;i++){
-    var journey = journeysByHeadCode[headCode][i];
-  html+=  `<tr>
-      <td>${journey.date}</td>
-      <td>${journey.origin}</td>
-      <td>${journey.destination}</td>
-      <td>${journey.station}</td>
-      <td>${journey.movementCategory}</td>
-      <td>${journey.actualIn}</td>
-      <td>${journey.expectedIn}</td>
-      <td>${journey.actualOut}</td>
-      <td>${journey.expectedOut}</td>
-      <td>${journey.delaySecs}</td>
-    </tr>`}
-
-  html==`</table></div>
-</body>
-</html>
-`;
-
-document.getElementById("detailsId").innerHTML = html;
 }
 //clear objects
 function clearObjects(objects) {
@@ -257,11 +193,11 @@ function clearObjects(objects) {
 }
 
 function zoomOnStation(stationValue) {
-  if(visibleStations.includes(lndn || prts)){
+
     clearObjects(visibleStations);
       for (var station in stations) {
         drawStation(station);
-      }
+
   }
   clearObjects(visibleroutes);
   var latlng = stationValue[0];
@@ -368,7 +304,7 @@ ul {
     htmlToInject += `<div class = "input-color">
                     ${routes[i]}
                         <img src = "route.png"></img>
-                        <a onclick="drawRoute(journeyRoutes['${routes[i]}'],'${routes[i]}')" href="#">
+                        <a onclick="drawRoute(journeyRoutes['${routes[i]}'])" href="#">
                           <font size="+2">
                             <b>${journeysByHeadCode[routes[i]][0].origin} ⇨ ${journeysByHeadCode[routes[i]][0].destination}</b>
 
@@ -384,6 +320,11 @@ ul {
                       `;
   }
 
+  htmlToInject += `  <div id="over"><a href ='#'   onclick="showCCTV()">
+    <img class="Centered" width="50px" height="50px" src = "cctv.jpg"> </img>
+    </a>
+  </div>`
+
 
 
 
@@ -391,6 +332,66 @@ ul {
 
   document.getElementById("detailsId").innerHTML = htmlToInject;
   //console.log(currentStation);
+}
+
+
+function showCCTV() {
+var htmlToInject = `<style>#wrapper {
+    width: 920px;
+    height: auto;
+    margin: 0 auto;
+}
+#home1 {
+    width: 47.5%;
+    height: 300px;
+    float: left;
+    margin-right: 5%;
+}
+
+#home2 {
+    width: 47.5%;
+    height: 300px;
+    float: left;
+}
+
+.clear{
+    clear: both;
+}
+
+@media (max-width:767px) {
+    #wrapper{
+        width: 100%;
+        height: auto;
+    }
+    #home1 {
+        width: 100%;
+        height: auto;
+        float: none;
+    }
+    #home2 {
+        width: 100%;
+        height: auto;
+        float: none;
+    }
+}</style>`;
+
+
+htmlToInject += `<div id="wrapper">
+<video autoplay width="400" height="225">
+  <source src="cctv/cam4.m4v" type="video/mp4">
+</video>`;
+htmlToInject+=`<video autoplay width="400" height="225">
+  <source src="cctv/cam3.m4v" type="video/mp4">
+</video>`;
+htmlToInject+=`<video autoplay width="400" height="225">
+  <source src="cctv/cam15.mp4" type="video/mp4">
+</video>`;
+htmlToInject+=`<video autoplay width="400" height="225">
+  <source src="cctv/gate.m4v" type="video/mp4">
+</video></div>`;
+
+
+document.getElementById("detailsId").innerHTML = htmlToInject;
 }
 
 function onClickCircles(e) {
@@ -458,7 +459,7 @@ function autocomplete(inp, arrayofcontent) {
               if(stations[inp.value])
                 zoomOnStation(stations[inp.value]);
               else {
-                drawRoute(journeyRoutes[inp.value],inp.value);
+                drawRoute(journeyRoutes[inp.value]);
               }
 
               /*close the list of autocompleted values,
