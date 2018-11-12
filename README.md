@@ -20,15 +20,15 @@ Data cleansing was particularly challenging: the format of the data was difficul
 
 ##### Sponsors of the event
 
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/bzZoSq/download-1.png" alt="download-1" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/mWRrfA/download-2.png" alt="download-2" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/noUzYV/download-3.png" alt="download-3" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/nCPBfA/download-4.png" alt="download-4" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/dyc8Sq/download-5.png" alt="download-5" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/hyaHLA/download-6.png" alt="download-6" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/nOCKYV/download-7.png" alt="download-7" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/d1hKYV/download-8.png" alt="download-8" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/kDZYtV/download-9.png" alt="download-9" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/epPcLA/download-10.png" alt="download-10" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/cuQTSq/download-11.png" alt="download-11" border="0"></a>
-<a href="https://imgbb.com/"><img src="https://image.ibb.co/mftF7q/download.png" alt="download" border="0"></a>
+<img src="https://image.ibb.co/bzZoSq/download-1.png" alt="download-1" border="0"></a>
+<img src="https://image.ibb.co/mWRrfA/download-2.png" alt="download-2" border="0">
+<img src="https://image.ibb.co/noUzYV/download-3.png" alt="download-3" border="0">
+<img src="https://image.ibb.co/nCPBfA/download-4.png" alt="download-4" border="0">
+<img src="https://image.ibb.co/dyc8Sq/download-5.png" alt="download-5" border="0">
+<img src="https://image.ibb.co/hyaHLA/download-6.png" alt="download-6" border="0">
+<img src="https://image.ibb.co/nOCKYV/download-7.png" alt="download-7" border="0">
+<img src="https://image.ibb.co/d1hKYV/download-8.png" alt="download-8" border="0">
+<img src="https://image.ibb.co/kDZYtV/download-9.png" alt="download-9" border="0">
+<img src="https://image.ibb.co/epPcLA/download-10.png" alt="download-10" border="0">
+<img src="https://image.ibb.co/cuQTSq/download-11.png" alt="download-11" border="0">
+<img src="https://image.ibb.co/mftF7q/download.png" alt="download" border="0">
